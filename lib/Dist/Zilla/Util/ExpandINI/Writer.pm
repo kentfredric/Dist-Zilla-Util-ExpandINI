@@ -57,8 +57,10 @@ sub validate_input {
 
   my %seen;
 
-  for ( my $i = 0 ; $i < $#$input ; $i += 2 ) {
-    my ( $name, $props ) = @$input[ $i, $i + 1 ];
+  my @input_copy = @{$input};
+
+  while (@input_copy) {
+    my ( $name, $props ) = splice @input_copy, 0, 2;
 
     if ( $seen{$name}++ ) {
       Carp::croak "multiple declarations found of $name";
@@ -67,9 +69,10 @@ sub validate_input {
     Carp::croak "illegal section name '$name'"
       if not $self->is_valid_section_name($name);
 
-    for ( my $j = 0 ; $j < $#$props ; $j += 2 ) {
-      my $property = $props->[$j];
-      my $value    = $props->[ $j + 1 ];
+    my @props_copy = @{$props};
+
+    while (@props_copy) {
+      my ( $property, $value ) = splice @props_copy, 0, 2;
 
       Carp::croak "property name '$property' contains illegal character"
         if not $self->is_valid_property_name($property);
