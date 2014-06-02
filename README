@@ -1,0 +1,65 @@
+NAME
+    Dist::Zilla::Util::ExpandINI - Read an INI file and expand bundles as
+    you go.
+
+VERSION
+    version 0.001000
+
+SYNOPSIS
+      # Write a dist.ini with a bundle anywhere you like
+      my $string = <<"EOF";
+      name = Foo
+      version = 1.000
+
+      [@Some::Author]
+      EOF;
+
+      path('dist.ini.meta')->spew( $string );
+
+      # Generate a copy with bundles inlined.
+      use Dist::Zilla::Util::ExpandINI;
+      Dist::Zilla::Util::ExpandINI->filter_file( 'dist.ini.meta' => 'dist.ini' );
+      # Hurrah, dist.ini has all the things!
+
+DESCRIPTION
+    This module builds upon the previous work ":Util::BundleInfo" ( Which
+    can extract configuration from a bundle in a manner similar to how
+    "dzil" does it ) and integrates it with some *very* minimal "INI"
+    handling to provide a tool capable of generating bundle-free "dist.ini"
+    files from bundle-using "dist.ini" files!
+
+    At present its very naïve and only keeps semantic ordering, and I've
+    probably gotten something wrong due to cutting the complexity of
+    Config::MVP out of the loop.
+
+    But at this stage, bundles are the *only* thing modified in transit.
+
+    Every thing else is practically a token-level copy-paste.
+
+METHODS
+  "filter_file"
+                                               #  $source   , $dest
+      Dist::Zilla::Util::ExpandINI->filter_file('source.ini','target.ini');
+
+    Reads $source, performs expansions, and emits $dest
+
+  "filter_handle"
+      Dist::Zilla::Util::ExpandINI->filter_handle($reader,$writer);
+
+    Reads $reader, performs expansions, and emits to $writer
+
+  "filter_string"
+      my $return = Dist::Zilla::Util::ExpandINI->filter_string($source);
+
+    Decodes $source, performs expansions, and returns expanded source.
+
+AUTHOR
+    Kent Fredric <kentfredric@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2014 by Kent Fredric
+    <kentfredric@gmail.com>.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
