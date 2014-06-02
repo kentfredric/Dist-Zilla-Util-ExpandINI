@@ -14,6 +14,10 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 use parent 'Config::INI::Writer';
 use Carp qw(croak);
 
+
+
+
+
 sub is_valid_section_name {
   my ( undef, $name ) = @_;
   return $name !~ m{
@@ -99,6 +103,8 @@ Dist::Zilla::Util::ExpandINI::Writer - An order-preserving INI Writer
 =head1 VERSION
 
 version 0.001000
+
+=for Pod::Coverage is_valid_section_name
 
 =head1 AUTHOR
 
