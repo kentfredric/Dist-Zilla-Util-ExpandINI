@@ -18,28 +18,18 @@ use parent 'Config::INI::Reader';
 sub new {
   my ($class) = @_;
 
-  my $self = { data => [], };
+  my $self = {
+    data     => [],
+    sections => {},
+  };
 
   bless $self => $class;
-}
-
-sub _xinit {
-  my ($self) = @_;
-  if ( not $self->{current_section} ) {
-    $self->{current_section} = { name => $self->starting_section, lines => [] };
-  }
-  if ( not $self->{data} ) {
-    $self->{data} = [];
-  }
-  if ( not $self->{sections} ) {
-    $self->{sections} = {};
-  }
+  $self->{current_section} = { name => $self->starting_section, lines => [] };
+  return $self;
 }
 
 sub change_section {
   my ( $self, $section ) = @_;
-
-  $self->_xinit;
 
   my ( $package, $name ) = $section =~ m{\A\s*(?:([^/\s]+)\s*/\s*)?(.+)\z};
   $package = $name unless defined $package and length $package;
@@ -62,7 +52,6 @@ sub change_section {
 
 sub set_value {
   my ( $self, $name, $value ) = @_;
-  $self->_xinit;
   push @{ $self->{current_section}->{lines} }, $name, $value;
 }
 
