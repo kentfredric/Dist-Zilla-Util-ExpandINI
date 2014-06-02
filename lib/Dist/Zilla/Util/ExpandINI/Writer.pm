@@ -15,7 +15,7 @@ use parent 'Config::INI::Writer';
 use Carp qw(croak);
 
 sub is_valid_section_name {
-  my ( $self, $name ) = @_;
+  my ( undef, $name ) = @_;
   return $name !~ m{
     (?:    # Dont capture
       \n   # Newlines may not occur in a section name
@@ -30,7 +30,7 @@ sub is_valid_section_name {
 }
 
 sub preprocess_input {
-  my ( $self, $data ) = @_;
+  my ( undef, $data ) = @_;
   my @out;
   my $i = 0;
   for my $record ( @{$data} ) {
