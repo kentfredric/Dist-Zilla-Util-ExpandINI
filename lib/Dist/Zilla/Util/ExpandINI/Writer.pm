@@ -26,7 +26,7 @@ sub is_valid_section_name {
       |
       \s$  # Trailing whitespace is illegal in a section name
     )
-  }x;
+  }msx;
 }
 
 sub preprocess_input {

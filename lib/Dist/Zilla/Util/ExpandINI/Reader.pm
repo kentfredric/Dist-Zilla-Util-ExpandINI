@@ -41,7 +41,7 @@ sub change_section {
     )?
     (.+)                      # Capture the rest as a complete token
     \z
-  }x;
+  }msx;
   $package = $name unless defined $package and length $package;
 
   Carp::croak qq{couldn't understand section header: "$section"}
