@@ -146,7 +146,7 @@ sub _expand {
   my @in = @{ $self->_data };
   while (@in) {
     my $tip = shift @in;
-    if ( $tip->{name} and $tip->{name} eq '_' ) {
+    if ( $tip->{name} and '_' eq $tip->{name} ) {
       push @out, $tip;
       next;
     }
