@@ -48,16 +48,19 @@ sub change_section {
     package => $package,
     lines   => [],
   };
+  return;
 }
 
 sub set_value {
   my ( $self, $name, $value ) = @_;
   push @{ $self->{current_section}->{lines} }, $name, $value;
+  return;
 }
 
 sub finalize {
   my ($self) = @_;
   push @{ $self->{data} }, $self->{current_section};
+  return;
 }
 
 1;

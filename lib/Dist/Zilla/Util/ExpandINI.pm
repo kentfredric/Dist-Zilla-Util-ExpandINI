@@ -80,21 +80,25 @@ has '_writer_class' => (
 sub _load_file {
   my ( $self, $name ) = @_;
   $self->_data( $self->_read_file($name) );
+  return;
 }
 
 sub _load_string {
   my ( $self, $content ) = @_;
   $self->_data( $self->_read_string($content) );
+  return;
 }
 
 sub _load_handle {
   my ( $self, $handle ) = @_;
   $self->_data( $self->_read_handle($handle) );
+  return;
 }
 
 sub _store_file {
   my ( $self, $name ) = @_;
   $self->_write_file( $self->_data, $name );
+  return;
 }
 
 sub _store_string {
@@ -105,6 +109,7 @@ sub _store_string {
 sub _store_handle {
   my ( $self, $handle ) = @_;
   $self->_write_handle( $self->_data, $handle );
+  return;
 }
 
 sub filter_file {
@@ -113,6 +118,7 @@ sub filter_file {
   $self->_load_file($input_fn);
   $self->_expand();
   $self->_store_file($output_fn);
+  return;
 }
 
 sub filter_handle {
@@ -121,6 +127,7 @@ sub filter_handle {
   $self->_load_handle($input_fh);
   $self->_expand();
   $self->_store_handle($output_fh);
+  return;
 }
 
 sub filter_string {
@@ -159,6 +166,7 @@ sub _expand {
     }
   }
   $self->_data( \@out );
+  return;
 }
 
 1;
