@@ -48,7 +48,7 @@ METHODS
 
     Reads $reader, performs expansions, and emits to $writer
 
-  "filter_handle"
+  "filter_string"
       my $return = Dist::Zilla::Util::ExpandINI->filter_string($source);
 
     Decodes $source, performs expansions, and returns expanded source.

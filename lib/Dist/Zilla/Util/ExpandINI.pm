@@ -260,7 +260,7 @@ Reads C<$source>, performs expansions, and emits C<$dest>
 
 Reads C<$reader>, performs expansions, and emits to C<$writer>
 
-=head2 C<filter_handle>
+=head2 C<filter_string>
 
   my $return = Dist::Zilla::Util::ExpandINI->filter_string($source);
 
