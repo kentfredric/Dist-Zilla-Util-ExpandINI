@@ -16,7 +16,17 @@ use Carp qw(croak);
 
 sub is_valid_section_name {
   my ( $self, $name ) = @_;
-  return $name !~ qr/(?:\n|\s;|^\s|\s$)/;
+  return $name !~ m{
+    (?:    # Dont capture
+      \n   # Newlines may not occur in a section name
+      |
+      \s;  # Comments may not occur in a section name
+      |
+      ^\s  # Leading whitespace is illegal in a section name
+      |
+      \s$  # Trailing whitespace is illegal in a section name
+    )
+  }x;
 }
 
 sub preprocess_input {

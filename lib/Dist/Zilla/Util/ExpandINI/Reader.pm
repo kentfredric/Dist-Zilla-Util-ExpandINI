@@ -31,7 +31,17 @@ sub new {
 sub change_section {
   my ( $self, $section ) = @_;
 
-  my ( $package, $name ) = $section =~ m{\A\s*(?:([^/\s]+)\s*/\s*)?(.+)\z};
+  my ( $package, $name ) = $section =~ m{
+    \A \s*                    # Ignore leading whitespace
+    (?:                       # Optional Non Capture Group
+      ([^/\s]+)               # Capture a bunch chars at the front
+      \s*                     # then skip over subsequent whitespace
+      /                       # and slash divider
+      \s*
+    )?
+    (.+)                      # Capture the rest as a complete token
+    \z
+  }x;
   $package = $name unless defined $package and length $package;
 
   Carp::croak qq{couldn't understand section header: "$section"}
