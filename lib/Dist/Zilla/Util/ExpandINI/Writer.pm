@@ -35,7 +35,7 @@ sub preprocess_input {
   my $i = 0;
   for my $ini_record ( @{$input_data} ) {
     $i++;
-    if ( $ini_record->{name} and $ini_record->{name} eq '_' ) {
+    if ( $ini_record->{name} and '_' eq $ini_record->{name} ) {
       push @out, '_', $ini_record->{lines};
       next;
     }
