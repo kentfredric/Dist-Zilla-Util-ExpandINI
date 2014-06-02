@@ -3,9 +3,11 @@ use warnings;
 
 package Dist::Zilla::Util::ExpandINI;
 
+our $VERSION = '0.001000';
+
 # ABSTRACT: Read an INI file and expand bundles as you go.
 
-our $VERSION = '0.001000';
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moo;
 
