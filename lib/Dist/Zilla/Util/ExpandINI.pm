@@ -49,7 +49,7 @@ Every thing else is practically a token-level copy-paste.
 has '_data' => (
   is      => 'rw',
   lazy    => 1,
-  default => sub { [] }
+  default => sub { [] },
 );
 
 has '_reader_class' => (
