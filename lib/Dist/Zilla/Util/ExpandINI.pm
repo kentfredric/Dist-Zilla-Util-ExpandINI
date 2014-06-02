@@ -117,6 +117,15 @@ sub _store_handle {
   return;
 }
 
+=method C<filter_file>
+
+                                           #  $source   , $dest
+  Dist::Zilla::Util::ExpandINI->filter_file('source.ini','target.ini');
+
+Reads C<$source>, performs expansions, and emits C<$dest>
+
+=cut
+
 sub filter_file {
   my ( $class, $input_fn, $output_fn ) = @_;
   my $self = $class->new;
@@ -126,6 +135,14 @@ sub filter_file {
   return;
 }
 
+=method C<filter_handle>
+
+  Dist::Zilla::Util::ExpandINI->filter_handle($reader,$writer);
+
+Reads C<$reader>, performs expansions, and emits to C<$writer>
+
+=cut
+
 sub filter_handle {
   my ( $class, $input_fh, $output_fh ) = @_;
   my $self = $class->new;
@@ -134,6 +151,14 @@ sub filter_handle {
   $self->_store_handle($output_fh);
   return;
 }
+
+=method C<filter_string>
+
+  my $return = Dist::Zilla::Util::ExpandINI->filter_string($source);
+
+Decodes C<$source>, performs expansions, and returns expanded source.
+
+=cut
 
 sub filter_string {
   my ( $class, $input_string ) = @_;

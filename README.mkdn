@@ -36,6 +36,27 @@ But at this stage, bundles are the _only_ thing modified in transit.
 
 Every thing else is practically a token-level copy-paste.
 
+# METHODS
+
+## `filter_file`
+
+                                             #  $source   , $dest
+    Dist::Zilla::Util::ExpandINI->filter_file('source.ini','target.ini');
+
+Reads `$source`, performs expansions, and emits `$dest`
+
+## `filter_handle`
+
+    Dist::Zilla::Util::ExpandINI->filter_handle($reader,$writer);
+
+Reads `$reader`, performs expansions, and emits to `$writer`
+
+## `filter_string`
+
+    my $return = Dist::Zilla::Util::ExpandINI->filter_string($source);
+
+Decodes `$source`, performs expansions, and returns expanded source.
+
 # AUTHOR
 
 Kent Fredric <kentfredric@gmail.com>
