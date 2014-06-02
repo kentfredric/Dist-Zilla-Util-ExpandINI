@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ExpandINI::Writer;
 
-our $VERSION = '0.001000';
+our $VERSION = '0.001001';
 
 # ABSTRACT: An order-preserving INI Writer
 
