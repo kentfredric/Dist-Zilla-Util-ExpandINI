@@ -9,7 +9,7 @@ our $VERSION = '0.001000';
 
 # AUTHORITY
 
-use Moo;
+use Moo 1.000008 qw( has );
 use Dist::Zilla::Util::BundleInfo 1.001000;
 
 =head1 SYNOPSIS
