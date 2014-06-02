@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use 5.006;
+use 5.008;
 
 use ExtUtils::MakeMaker 6.30;
 
@@ -20,14 +20,18 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Dist::Zilla::Util::ExpandINI",
   "PREREQ_PM" => {
+    "Carp" => 0,
+    "Config::INI::Reader" => 0,
+    "Config::INI::Writer" => 0,
     "Dist::Zilla::Util::BundleInfo" => 0,
-    "Dist::Zilla::Util::ExpandINI::Reader" => 0,
-    "Dist::Zilla::Util::ExpandINI::Writer" => 0,
     "Moo" => 0,
+    "parent" => 0,
     "strict" => 0,
+    "utf8" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
+    "Dist::Zilla::PluginBundle::Classic" => 0,
     "ExtUtils::MakeMaker" => 0,
     "File::Spec::Functions" => 0,
     "List::Util" => 0,
@@ -42,15 +46,19 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Carp" => 0,
+  "Config::INI::Reader" => 0,
+  "Config::INI::Writer" => 0,
+  "Dist::Zilla::PluginBundle::Classic" => 0,
   "Dist::Zilla::Util::BundleInfo" => 0,
-  "Dist::Zilla::Util::ExpandINI::Reader" => 0,
-  "Dist::Zilla::Util::ExpandINI::Writer" => 0,
   "ExtUtils::MakeMaker" => 0,
   "File::Spec::Functions" => 0,
   "List::Util" => 0,
   "Moo" => 0,
   "Test::More" => "0.89",
+  "parent" => 0,
   "strict" => 0,
+  "utf8" => 0,
   "version" => 0,
   "warnings" => 0
 );

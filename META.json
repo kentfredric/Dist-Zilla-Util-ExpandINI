@@ -79,12 +79,15 @@
       },
       "runtime" : {
          "requires" : {
+            "Carp" : "0",
+            "Config::INI::Reader" : "0",
+            "Config::INI::Writer" : "0",
             "Dist::Zilla::Util::BundleInfo" : "0",
-            "Dist::Zilla::Util::ExpandINI::Reader" : "0",
-            "Dist::Zilla::Util::ExpandINI::Writer" : "0",
             "Moo" : "0",
-            "perl" : "5.006",
+            "parent" : "0",
+            "perl" : "5.008",
             "strict" : "0",
+            "utf8" : "0",
             "warnings" : "0"
          }
       },
@@ -96,6 +99,7 @@
             "Test::More" : "1.001003"
          },
          "requires" : {
+            "Dist::Zilla::PluginBundle::Classic" : "0",
             "ExtUtils::MakeMaker" : "0",
             "File::Spec::Functions" : "0",
             "List::Util" : "0",
@@ -108,18 +112,25 @@
       "Dist::Zilla::Util::ExpandINI" : {
          "file" : "lib/Dist/Zilla/Util/ExpandINI.pm",
          "version" : "0.001000"
+      },
+      "Dist::Zilla::Util::ExpandINI::Reader" : {
+         "file" : "lib/Dist/Zilla/Util/ExpandINI/Reader.pm",
+         "version" : "0.001000"
+      },
+      "Dist::Zilla::Util::ExpandINI::Writer" : {
+         "file" : "lib/Dist/Zilla/Util/ExpandINI/Writer.pm",
+         "version" : "0.001000"
       }
    },
    "release_status" : "stable",
    "version" : "0.001000",
    "x_BuiltWith" : {
-      "failures" : {
-         "Dist::Zilla::Util::ExpandINI::Reader" : "module was not found in INC",
-         "Dist::Zilla::Util::ExpandINI::Writer" : "module was not found in INC"
-      },
       "modules" : {
          "CPAN::Meta" : "2.141520",
          "CPAN::Meta::Requirements" : "2.125",
+         "Carp" : "1.3301",
+         "Config::INI::Reader" : "0.024",
+         "Config::INI::Writer" : "0.024",
          "Dist::Zilla::Plugin::Authority" : "1.006",
          "Dist::Zilla::Plugin::AutoPrereqs" : "5.019",
          "Dist::Zilla::Plugin::BumpVersionAfterRelease" : "0.002",
@@ -163,6 +174,7 @@
          "Dist::Zilla::Plugin::UploadToCPAN" : "5.019",
          "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.014001",
          "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "1.7.2",
+         "Dist::Zilla::PluginBundle::Classic" : "5.019",
          "Dist::Zilla::Util::BundleInfo" : "1.001000",
          "ExtUtils::MakeMaker" : "6.98",
          "File::Spec::Functions" : "3.47",
@@ -175,7 +187,9 @@
          "Test::More" : "1.001003",
          "Test::Pod" : "1.48",
          "Test::Pod::Coverage" : "1.08",
+         "parent" : "0.228",
          "strict" : "1.08",
+         "utf8" : "1.13",
          "version" : "0.9908",
          "warnings" : "1.23"
       },
@@ -332,7 +346,9 @@
             "config" : {
                "Dist::Zilla::Plugin::Test::Compile::PerFile" : {
                   "file" : [
-                     "lib/Dist/Zilla/Util/ExpandINI.pm"
+                     "lib/Dist/Zilla/Util/ExpandINI.pm",
+                     "lib/Dist/Zilla/Util/ExpandINI/Reader.pm",
+                     "lib/Dist/Zilla/Util/ExpandINI/Writer.pm"
                   ],
                   "path_translator" : "base64_filter",
                   "prefix" : "t/00-compile",

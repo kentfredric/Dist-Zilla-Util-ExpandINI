@@ -108,12 +108,15 @@ my $static_prereqs = do { my $x = {
                     },
        'runtime' => {
                       'requires' => {
+                                      'Carp' => '0',
+                                      'Config::INI::Reader' => '0',
+                                      'Config::INI::Writer' => '0',
                                       'Dist::Zilla::Util::BundleInfo' => '0',
-                                      'Dist::Zilla::Util::ExpandINI::Reader' => '0',
-                                      'Dist::Zilla::Util::ExpandINI::Writer' => '0',
                                       'Moo' => '0',
-                                      'perl' => '5.006',
+                                      'parent' => '0',
+                                      'perl' => '5.008',
                                       'strict' => '0',
+                                      'utf8' => '0',
                                       'warnings' => '0'
                                     }
                     },
@@ -125,6 +128,7 @@ my $static_prereqs = do { my $x = {
                                      'Test::More' => '1.001003'
                                    },
                    'requires' => {
+                                   'Dist::Zilla::PluginBundle::Classic' => '0',
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec::Functions' => '0',
                                    'List::Util' => '0',
