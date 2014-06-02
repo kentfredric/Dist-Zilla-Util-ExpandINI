@@ -49,7 +49,7 @@ use Dist::Zilla::Util::BundleInfo 1.001000;
 has '_data' => (
   is      => 'rw',
   lazy    => 1,
-  default => sub { [] }
+  default => sub { [] },
 );
 
 has '_reader_class' => (
