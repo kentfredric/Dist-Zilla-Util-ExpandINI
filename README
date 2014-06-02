@@ -25,7 +25,7 @@ DESCRIPTION
     This module builds upon the previous work ":Util::BundleInfo" ( Which
     can extract configuration from a bundle in a manner similar to how dzil
     does it ) and integrates it with some *very* minimal "INI" handling to
-    provide a tool capable of generting bundle-free "dist.ini" files from
+    provide a tool capable of generating bundle-free "dist.ini" files from
     bundle-using "dist.ini" files!
 
     At present its very naïve and only keeps semantic ordering, and I've

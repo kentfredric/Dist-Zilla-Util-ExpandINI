@@ -211,7 +211,7 @@ version 0.001000
 
 This module builds upon the previous work L<< C<:Util::BundleInfo>|Dist::Zilla::Util::BundleInfo >> ( Which can extract
 configuration from a bundle in a manner similar to how dzil does it ) and integrates it with some I<very> minimal C<INI>
-handling to provide a tool capable of generting bundle-free C<dist.ini> files from bundle-using C<dist.ini> files!
+handling to provide a tool capable of generating bundle-free C<dist.ini> files from bundle-using C<dist.ini> files!
 
 At present its very naïve and only keeps semantic ordering, and I've probably gotten something wrong due to cutting the
 complexity of Config::MVP out of the loop.
