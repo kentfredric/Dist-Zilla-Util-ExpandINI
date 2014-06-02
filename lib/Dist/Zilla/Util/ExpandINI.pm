@@ -10,6 +10,7 @@ our $VERSION = '0.001000';
 # AUTHORITY
 
 use Moo;
+use Dist::Zilla::Util::BundleInfo 1.001000;
 
 =head1 SYNOPSIS
 
@@ -146,7 +147,6 @@ sub _expand {
     }
 
     # Handle bundle
-    require Dist::Zilla::Util::BundleInfo;
     my $bundle = Dist::Zilla::Util::BundleInfo->new(
       bundle_name    => $tip->{package},
       bundle_payload => $tip->{lines},
