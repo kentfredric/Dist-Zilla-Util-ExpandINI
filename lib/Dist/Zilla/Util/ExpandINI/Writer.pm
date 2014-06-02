@@ -30,23 +30,23 @@ sub is_valid_section_name {
 }
 
 sub preprocess_input {
-  my ( undef, $data ) = @_;
+  my ( undef, $input_data ) = @_;
   my @out;
   my $i = 0;
-  for my $record ( @{$data} ) {
+  for my $ini_record ( @{$input_data} ) {
     $i++;
-    if ( $record->{name} and $record->{name} eq '_' ) {
-      push @out, '_', $record->{lines};
+    if ( $ini_record->{name} and $ini_record->{name} eq '_' ) {
+      push @out, '_', $ini_record->{lines};
       next;
     }
-    if ( not $record->{package} ) {
+    if ( not $ini_record->{package} ) {
       croak("Entry $i lacks package component");
     }
-    my $kn = $record->{package};
-    if ( $record->{name} and $record->{package} ne $record->{name} ) {
-      $kn .= q[ / ] . $record->{name};
+    my $kn = $ini_record->{package};
+    if ( $ini_record->{name} and $ini_record->{package} ne $ini_record->{name} ) {
+      $kn .= q[ / ] . $ini_record->{name};
     }
-    push @out, $kn, $record->{lines};
+    push @out, $kn, $ini_record->{lines};
     next;
   }
   return \@out;
