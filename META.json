@@ -123,6 +123,17 @@
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/kentfredric/Dist-Zilla-Util-ExpandINI/issues"
+      },
+      "homepage" : "https://github.com/kentfredric/Dist-Zilla-Util-ExpandINI",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/kentfredric/Dist-Zilla-Util-ExpandINI.git",
+         "web" : "https://github.com/kentfredric/Dist-Zilla-Util-ExpandINI"
+      }
+   },
    "version" : "0.001000",
    "x_BuiltWith" : {
       "modules" : {
