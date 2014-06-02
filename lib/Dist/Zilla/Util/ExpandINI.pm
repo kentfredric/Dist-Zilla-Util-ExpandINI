@@ -9,7 +9,8 @@ our $VERSION = '0.001000';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
-use Moo;
+use Moo 1.000008 qw( has );
+use Dist::Zilla::Util::BundleInfo 1.001000;
 
 
 
@@ -146,7 +147,6 @@ sub _expand {
     }
 
     # Handle bundle
-    require Dist::Zilla::Util::BundleInfo;
     my $bundle = Dist::Zilla::Util::BundleInfo->new(
       bundle_name    => $tip->{package},
       bundle_payload => $tip->{lines},
