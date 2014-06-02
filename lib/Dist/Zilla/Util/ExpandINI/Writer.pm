@@ -14,6 +14,10 @@ our $VERSION = '0.001000';
 use parent 'Config::INI::Writer';
 use Carp qw(croak);
 
+=for Pod::Coverage is_valid_section_name
+
+=cut
+
 sub is_valid_section_name {
   my ( undef, $name ) = @_;
   return $name !~ m{
