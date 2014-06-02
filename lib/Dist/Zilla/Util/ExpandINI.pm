@@ -5,6 +5,8 @@ package Dist::Zilla::Util::ExpandINI;
 
 # ABSTRACT: Read an INI file and expand bundles as you go.
 
+our $VERSION = '0.001000';
+
 use Moo;
 
 
@@ -171,7 +173,7 @@ Dist::Zilla::Util::ExpandINI - Read an INI file and expand bundles as you go.
 
 =head1 VERSION
 
-version 0.000000
+version 0.001000
 
 =head1 SYNOPSIS
 
