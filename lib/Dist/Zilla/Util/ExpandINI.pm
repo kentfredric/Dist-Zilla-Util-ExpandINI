@@ -117,6 +117,15 @@ sub _store_handle {
   return;
 }
 
+
+
+
+
+
+
+
+
+
 sub filter_file {
   my ( $class, $input_fn, $output_fn ) = @_;
   my $self = $class->new;
@@ -126,6 +135,14 @@ sub filter_file {
   return;
 }
 
+
+
+
+
+
+
+
+
 sub filter_handle {
   my ( $class, $input_fh, $output_fh ) = @_;
   my $self = $class->new;
@@ -134,6 +151,14 @@ sub filter_handle {
   $self->_store_handle($output_fh);
   return;
 }
+
+
+
+
+
+
+
+
 
 sub filter_string {
   my ( $class, $input_string ) = @_;
@@ -219,6 +244,27 @@ complexity of Config::MVP out of the loop.
 But at this stage, bundles are the I<only> thing modified in transit.
 
 Every thing else is practically a token-level copy-paste.
+
+=head1 METHODS
+
+=head2 C<filter_file>
+
+                                           #  $source   , $dest
+  Dist::Zilla::Util::ExpandINI->filter_file('source.ini','target.ini');
+
+Reads C<$source>, performs expansions, and emits C<$dest>
+
+=head2 C<filter_handle>
+
+  Dist::Zilla::Util::ExpandINI->filter_handle($reader,$writer);
+
+Reads C<$reader>, performs expansions, and emits to C<$writer>
+
+=head2 C<filter_handle>
+
+  my $return = Dist::Zilla::Util::ExpandINI->filter_string($source);
+
+Decodes C<$source>, performs expansions, and returns expanded source.
 
 =head1 AUTHOR
 
