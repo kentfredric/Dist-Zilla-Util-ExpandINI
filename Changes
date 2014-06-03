@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
 {{$NEXT}}
+
+0.001001 2014-06-03T05:43:02Z
  [Bugfix]
  - use a version of Config::MVP with is_valid_property_name
 
