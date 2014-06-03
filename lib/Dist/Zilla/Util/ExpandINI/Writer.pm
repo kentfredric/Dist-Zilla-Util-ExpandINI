@@ -5,12 +5,13 @@ use utf8;
 
 package Dist::Zilla::Util::ExpandINI::Writer;
 
-our $VERSION = '0.001000';
+our $VERSION = '0.001001';
 
 # ABSTRACT: An order-preserving INI Writer
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
+use Config::INI::Writer 0.024;
 use parent 'Config::INI::Writer';
 use Carp qw(croak);
 
@@ -102,7 +103,7 @@ Dist::Zilla::Util::ExpandINI::Writer - An order-preserving INI Writer
 
 =head1 VERSION
 
-version 0.001000
+version 0.001001
 
 =for Pod::Coverage is_valid_section_name
 

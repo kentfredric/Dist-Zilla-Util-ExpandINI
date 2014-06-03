@@ -22,7 +22,7 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Carp" => 0,
     "Config::INI::Reader" => 0,
-    "Config::INI::Writer" => 0,
+    "Config::INI::Writer" => "0.024",
     "Dist::Zilla::Util::BundleInfo" => "1.001000",
     "Moo" => "1.000008",
     "parent" => 0,
@@ -38,7 +38,7 @@ my %WriteMakefileArgs = (
     "Test::More" => "0.89",
     "version" => 0
   },
-  "VERSION" => "0.001000",
+  "VERSION" => "0.001001",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -48,7 +48,7 @@ my %WriteMakefileArgs = (
 my %FallbackPrereqs = (
   "Carp" => 0,
   "Config::INI::Reader" => 0,
-  "Config::INI::Writer" => 0,
+  "Config::INI::Writer" => "0.024",
   "Dist::Zilla::PluginBundle::Classic" => 0,
   "Dist::Zilla::Util::BundleInfo" => "1.001000",
   "ExtUtils::MakeMaker" => 0,

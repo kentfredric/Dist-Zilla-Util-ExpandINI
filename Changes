@@ -1,5 +1,14 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
+0.001001 2014-06-03T05:43:02Z
+ [Bugfix]
+ - use a version of Config::MVP with is_valid_property_name
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.001000, see Changes.deps* for details
+ - develop: -1 (suggests: +2 -1)
+ - runtime: ↑1
+
 0.001000 2014-06-02T21:24:12Z
  - First version.
 

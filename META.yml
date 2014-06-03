@@ -21,17 +21,17 @@ name: Dist-Zilla-Util-ExpandINI
 provides:
   Dist::Zilla::Util::ExpandINI:
     file: lib/Dist/Zilla/Util/ExpandINI.pm
-    version: '0.001000'
+    version: '0.001001'
   Dist::Zilla::Util::ExpandINI::Reader:
     file: lib/Dist/Zilla/Util/ExpandINI/Reader.pm
-    version: '0.001000'
+    version: '0.001001'
   Dist::Zilla::Util::ExpandINI::Writer:
     file: lib/Dist/Zilla/Util/ExpandINI/Writer.pm
-    version: '0.001000'
+    version: '0.001001'
 requires:
   Carp: '0'
   Config::INI::Reader: '0'
-  Config::INI::Writer: '0'
+  Config::INI::Writer: '0.024'
   Dist::Zilla::Util::BundleInfo: '1.001000'
   Moo: '1.000008'
   parent: '0'
@@ -43,7 +43,7 @@ resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Util-ExpandINI/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Util-ExpandINI
   repository: https://github.com/kentfredric/Dist-Zilla-Util-ExpandINI.git
-version: '0.001000'
+version: '0.001001'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.141520'
@@ -51,6 +51,7 @@ x_BuiltWith:
     Carp: '1.3301'
     Config::INI::Reader: '0.024'
     Config::INI::Writer: '0.024'
+    Dist::Zilla::App::Command::bakeini: '0.001000'
     Dist::Zilla::Plugin::Authority: '1.006'
     Dist::Zilla::Plugin::AutoPrereqs: '5.019'
     Dist::Zilla::Plugin::BumpVersionAfterRelease: '0.002'
@@ -92,8 +93,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::TestRelease: '5.019'
     Dist::Zilla::Plugin::Twitter: '0.025'
     Dist::Zilla::Plugin::UploadToCPAN: '5.019'
-    Dist::Zilla::PluginBundle::Author::KENTNL: '2.014001'
-    Dist::Zilla::PluginBundle::Author::KENTNL::Lite: 1.7.2
+    Dist::Zilla::PluginBundle::Author::KENTNL: '2.015000'
     Dist::Zilla::PluginBundle::Classic: '5.019'
     Dist::Zilla::Util::BundleInfo: '1.001000'
     ExtUtils::MakeMaker: '6.98'
@@ -348,14 +348,6 @@ x_Dist_Zilla:
       name: '@Author::KENTNL/BundleDevelSuggests'
       version: '5.019'
     -
-      class: Dist::Zilla::Plugin::Prereqs
-      config:
-        Dist::Zilla::Plugin::Prereqs:
-          phase: develop
-          type: requires
-      name: '@Author::KENTNL/BundleDevelRequires'
-      version: '5.019'
-    -
       class: Dist::Zilla::Plugin::MinimumPerl
       name: '@Author::KENTNL/MinimumPerl'
       version: '1.003'
@@ -435,7 +427,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: 0.001000-source
+          tag: 0.001001-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -489,7 +481,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: 0
-          tag: '0.001000'
+          tag: '0.001001'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
@@ -531,11 +523,12 @@ x_Dist_Zilla:
       config:
         Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled:
           applyto_map:
-            - 'develop.requires = develop.requires'
+            - 'develop.suggests = develop.suggests'
           applyto_phase:
             - develop
           modules:
             - Dist::Zilla::PluginBundle::Author::KENTNL
+            - Dist::Zilla::App::Command::bakeini
       name: '@Author::KENTNL/always_latest_develop_bundle'
       version: '0.001000'
     -
