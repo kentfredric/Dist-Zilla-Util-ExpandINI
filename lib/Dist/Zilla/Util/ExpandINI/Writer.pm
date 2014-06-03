@@ -11,6 +11,7 @@ our $VERSION = '0.001001';
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
+use Config::INI::Writer 0.024;
 use parent 'Config::INI::Writer';
 use Carp qw(croak);
 

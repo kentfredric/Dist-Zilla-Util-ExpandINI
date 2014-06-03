@@ -65,6 +65,7 @@
             "Dist::Zilla::Plugin::TestRelease" : "0",
             "Dist::Zilla::Plugin::Twitter" : "0",
             "Dist::Zilla::Plugin::UploadToCPAN" : "0",
+            "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.015000",
             "Pod::Coverage::TrustPod" : "0",
             "Test::CPAN::Changes" : "0.19",
             "Test::CPAN::Meta" : "0",
@@ -73,15 +74,14 @@
             "Test::Pod::Coverage" : "1.08"
          },
          "suggests" : {
-            "Dist::Zilla::App::Command::bakeini" : "0.001000",
-            "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.015000"
+            "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "v1.3.0"
          }
       },
       "runtime" : {
          "requires" : {
             "Carp" : "0",
             "Config::INI::Reader" : "0",
-            "Config::INI::Writer" : "0",
+            "Config::INI::Writer" : "0.024",
             "Dist::Zilla::Util::BundleInfo" : "1.001000",
             "Moo" : "1.000008",
             "parent" : "0",
@@ -142,7 +142,6 @@
          "Carp" : "1.3301",
          "Config::INI::Reader" : "0.024",
          "Config::INI::Writer" : "0.024",
-         "Dist::Zilla::App::Command::bakeini" : "0.001000",
          "Dist::Zilla::Plugin::Authority" : "1.006",
          "Dist::Zilla::Plugin::AutoPrereqs" : "5.019",
          "Dist::Zilla::Plugin::BumpVersionAfterRelease" : "0.002",
@@ -185,6 +184,7 @@
          "Dist::Zilla::Plugin::Twitter" : "0.025",
          "Dist::Zilla::Plugin::UploadToCPAN" : "5.019",
          "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.015000",
+         "Dist::Zilla::PluginBundle::Author::KENTNL::Lite" : "1.7.2",
          "Dist::Zilla::PluginBundle::Classic" : "5.019",
          "Dist::Zilla::Util::BundleInfo" : "1.001000",
          "ExtUtils::MakeMaker" : "6.98",
@@ -509,6 +509,17 @@
             "version" : "5.019"
          },
          {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "develop",
+                  "type" : "requires"
+               }
+            },
+            "name" : "@Author::KENTNL/BundleDevelRequires",
+            "version" : "5.019"
+         },
+         {
             "class" : "Dist::Zilla::Plugin::MinimumPerl",
             "name" : "@Author::KENTNL/MinimumPerl",
             "version" : "1.003"
@@ -738,14 +749,13 @@
             "config" : {
                "Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled" : {
                   "applyto_map" : [
-                     "develop.suggests = develop.suggests"
+                     "develop.requires = develop.requires"
                   ],
                   "applyto_phase" : [
                      "develop"
                   ],
                   "modules" : [
-                     "Dist::Zilla::PluginBundle::Author::KENTNL",
-                     "Dist::Zilla::App::Command::bakeini"
+                     "Dist::Zilla::PluginBundle::Author::KENTNL"
                   ]
                }
             },
