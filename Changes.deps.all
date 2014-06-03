@@ -1,0 +1,7 @@
+0.001001
+ [Changed / develop requires]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.014001 → 2.015000
+
+ [Changed / runtime requires]
+ - Config::INI::Writer 0 → 0.024
+
