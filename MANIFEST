@@ -3,10 +3,6 @@
 .perltidyrc
 .travis.yml
 Changes
-Changes.deps
-Changes.deps.all
-Changes.deps.dev
-Changes.deps.opt
 LICENSE
 MANIFEST
 META.json
@@ -37,11 +33,16 @@ maint-travis-ci/yamls/sterile.mkdn
 maint-travis-ci/yamls/sterile.yaml
 maint-travis-ci/yamls/sterile2.yaml
 maint/perlcritic.rc.gen.pl
+misc/Changes.deps
+misc/Changes.deps.all
+misc/Changes.deps.dev
+misc/Changes.deps.opt
 perlcritic.deps
 perlcritic.rc
 t/00-compile/lib_Dist_Zilla_Util_ExpandINI_Reader_pm.t
 t/00-compile/lib_Dist_Zilla_Util_ExpandINI_Writer_pm.t
 t/00-compile/lib_Dist_Zilla_Util_ExpandINI_pm.t
+t/00-report-prereqs.dd
 t/00-report-prereqs.t
 t/expand_classic.t
 t/expand_classic_simple.t
