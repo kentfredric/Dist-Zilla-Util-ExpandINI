@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ExpandINI::Writer;
 
-our $VERSION = '0.001002';
+our $VERSION = '0.001003';
 
 # ABSTRACT: An order-preserving INI Writer
 
@@ -103,7 +103,7 @@ Dist::Zilla::Util::ExpandINI::Writer - An order-preserving INI Writer
 
 =head1 VERSION
 
-version 0.001002
+version 0.001003
 
 =for Pod::Coverage is_valid_section_name
 
