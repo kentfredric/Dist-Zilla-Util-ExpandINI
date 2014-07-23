@@ -1,7 +1,14 @@
-0.001001
+This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
+
+0.001002
+
+0.001001 2014-06-03T05:43:02Z
  [Added / develop suggests]
  - Dist::Zilla::App::Command::bakeini 0.001000
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.015000
+
+ [Changed / runtime requires]
+ - Config::INI::Writer 0 → 0.024
 
  [Removed / develop requires]
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.014001

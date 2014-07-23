@@ -1,0 +1,8 @@
+This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
+
+0.001002
+
+0.001001 2014-06-03T05:43:02Z
+ [Changed / runtime requires]
+ - Config::INI::Writer 0 → 0.024
+
