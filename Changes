@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
 {{$NEXT}}
+
+0.001002 2014-07-23T17:44:44Z
  [00 Trivial]
  - Misc packaging cleanups
 
