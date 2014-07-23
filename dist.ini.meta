@@ -5,10 +5,10 @@ license          = Perl_5
 copyright_holder = Kent Fredric <kentfredric@gmail.com>
 
 ; Uncomment this to bootstrap via self
-; [Bootstrap::lib]
+[Bootstrap::lib]
 
 [@Author::KENTNL]
-:version          = 2.014000
+:version          = 2.016000
 git_versions      = 1
 normal_form       = numify
 mantissa          = 6
