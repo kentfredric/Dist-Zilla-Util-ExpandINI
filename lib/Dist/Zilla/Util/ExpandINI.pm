@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ExpandINI;
 
-our $VERSION = '0.001001';
+our $VERSION = '0.001002';
 
 # ABSTRACT: Read an INI file and expand bundles as you go.
 
@@ -213,7 +213,7 @@ Dist::Zilla::Util::ExpandINI - Read an INI file and expand bundles as you go.
 
 =head1 VERSION
 
-version 0.001001
+version 0.001002
 
 =head1 SYNOPSIS
 

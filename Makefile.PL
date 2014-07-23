@@ -33,12 +33,14 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "Dist::Zilla::PluginBundle::Classic" => 0,
     "ExtUtils::MakeMaker" => 0,
+    "File::Spec" => 0,
     "File::Spec::Functions" => 0,
     "List::Util" => 0,
+    "Scalar::Util" => 0,
     "Test::More" => "0.89",
-    "version" => 0
+    "version" => "0.77"
   },
-  "VERSION" => "0.001001",
+  "VERSION" => "0.001002",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -52,14 +54,16 @@ my %FallbackPrereqs = (
   "Dist::Zilla::PluginBundle::Classic" => 0,
   "Dist::Zilla::Util::BundleInfo" => "1.001000",
   "ExtUtils::MakeMaker" => 0,
+  "File::Spec" => 0,
   "File::Spec::Functions" => 0,
   "List::Util" => 0,
   "Moo" => "1.000008",
+  "Scalar::Util" => 0,
   "Test::More" => "0.89",
   "parent" => 0,
   "strict" => 0,
   "utf8" => 0,
-  "version" => 0,
+  "version" => "0.77",
   "warnings" => 0
 );
 

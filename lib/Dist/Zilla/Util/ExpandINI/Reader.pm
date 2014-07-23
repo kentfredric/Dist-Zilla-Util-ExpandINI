@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Util::ExpandINI::Reader;
 
-our $VERSION = '0.001001';
+our $VERSION = '0.001002';
 
 # ABSTRACT: An order-preserving INI reader
 
@@ -87,7 +87,7 @@ Dist::Zilla::Util::ExpandINI::Reader - An order-preserving INI reader
 
 =head1 VERSION
 
-version 0.001001
+version 0.001002
 
 =head1 AUTHOR
 
