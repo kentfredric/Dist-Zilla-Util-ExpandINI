@@ -1,6 +1,14 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
-0.001003 2014-08-05T09:32:02Z
+0.001003 2014-08-05T09:32:47Z
+ [00 Trivial]
+ - update Test::ReportVersions
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.001002, see misc/*.deps* for details
+ - configure: ↓1
+ - develop: (suggests: ↑1)
+ - test: -4 (recommends: ↑1 -2)
 
 0.001002 2014-07-23T17:44:44Z
  [00 Trivial]
