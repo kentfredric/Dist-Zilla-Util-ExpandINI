@@ -14,41 +14,6 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 use Moo 1.000008 qw( has );
 use Dist::Zilla::Util::BundleInfo 1.001000;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 has '_data' => (
   is      => 'rw',
   lazy    => 1,
