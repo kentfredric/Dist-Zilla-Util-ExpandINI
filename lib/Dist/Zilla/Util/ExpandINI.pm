@@ -14,41 +14,6 @@ our $VERSION = '0.001003';
 use Moo 1.000008 qw( has );
 use Dist::Zilla::Util::BundleInfo 1.001000;
 
-=head1 SYNOPSIS
-
-
-  # Write a dist.ini with a bundle anywhere you like
-  my $string = <<"EOF";
-  name = Foo
-  version = 1.000
-
-  [@Some::Author]
-  EOF;
-
-  path('dist.ini.meta')->spew( $string );
-
-  # Generate a copy with bundles inlined.
-  use Dist::Zilla::Util::ExpandINI;
-  Dist::Zilla::Util::ExpandINI->filter_file( 'dist.ini.meta' => 'dist.ini' );
-  # Hurrah, dist.ini has all the things!
-  
-=cut
-
-=head1 DESCRIPTION
-
-This module builds upon the previous work L<< C<:Util::BundleInfo>|Dist::Zilla::Util::BundleInfo >> ( Which can extract
-configuration from a bundle in a manner similar to how C<dzil> does it ) and integrates it with some I<very> minimal C<INI>
-handling to provide a tool capable of generating bundle-free C<dist.ini> files from bundle-using C<dist.ini> files!
-
-At present its very naïve and only keeps semantic ordering, and I've probably gotten something wrong due to cutting the
-complexity of Config::MVP out of the loop.
-
-But at this stage, bundles are the I<only> thing modified in transit.
-
-Every thing else is practically a token-level copy-paste.
-
-=cut
-
 has '_data' => (
   is      => 'rw',
   lazy    => 1,
@@ -200,3 +165,35 @@ sub _expand {
 }
 
 1;
+
+=head1 SYNOPSIS
+
+  # Write a dist.ini with a bundle anywhere you like
+  my $string = <<"EOF";
+  name = Foo
+  version = 1.000
+
+  [@Some::Author]
+  EOF;
+
+  path('dist.ini.meta')->spew( $string );
+
+  # Generate a copy with bundles inlined.
+  use Dist::Zilla::Util::ExpandINI;
+  Dist::Zilla::Util::ExpandINI->filter_file( 'dist.ini.meta' => 'dist.ini' );
+  # Hurrah, dist.ini has all the things!
+
+=head1 DESCRIPTION
+
+This module builds upon the previous work L<< C<:Util::BundleInfo>|Dist::Zilla::Util::BundleInfo >> ( Which can extract
+configuration from a bundle in a manner similar to how C<dzil> does it ) and integrates it with some I<very> minimal C<INI>
+handling to provide a tool capable of generating bundle-free C<dist.ini> files from bundle-using C<dist.ini> files!
+
+At present its very naïve and only keeps semantic ordering, and I've probably gotten something wrong due to cutting the
+complexity of Config::MVP out of the loop.
+
+But at this stage, bundles are the I<only> thing modified in transit.
+
+Every thing else is practically a token-level copy-paste.
+
+=cut

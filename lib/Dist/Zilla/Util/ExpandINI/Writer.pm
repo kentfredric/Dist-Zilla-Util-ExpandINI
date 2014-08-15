@@ -90,4 +90,3 @@ sub validate_input {
   return;
 }
 1;
-
