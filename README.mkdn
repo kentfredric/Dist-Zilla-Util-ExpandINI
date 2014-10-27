@@ -59,7 +59,7 @@ Decodes `$source`, performs expansions, and returns expanded source.
 
 # AUTHOR
 
-Kent Fredric <kentfredric@gmail.com>
+Kent Fredric <kentnl@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
