@@ -13,6 +13,9 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Test::EOL
  - Test::More
 
+ [Added / runtime requires]
+ - Scalar::Util
+
  [Changed / configure recommends]
  - ExtUtils::MakeMaker 6.98 → 7.00
 

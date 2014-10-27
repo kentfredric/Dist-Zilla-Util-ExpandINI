@@ -8,6 +8,7 @@ Release history for Dist-Zilla-Util-ExpandINI
  - Dependencies changed since 0.001003, see misc/*.deps* for details
  - configure: (recommends: ↑1)
  - develop: +7 ↑2 -1 (recommends: +1, suggests: ↑2)
+ - runtime: +1
  - test: (recommends: ↑2)
 
  [Metadata]
