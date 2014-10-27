@@ -429,7 +429,7 @@ base_max = 130
 
 [Variables::ProhibitEvilVariables]
 
-[Variables::ProhibitLocalVars]
+[-Variables::ProhibitLocalVars]
 
 [Variables::ProhibitMatchVars]
 

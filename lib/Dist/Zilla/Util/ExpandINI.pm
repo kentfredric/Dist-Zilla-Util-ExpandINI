@@ -5,13 +5,14 @@ use utf8;
 
 package Dist::Zilla::Util::ExpandINI;
 
-our $VERSION = '0.001004';
+our $VERSION = '0.002000';
 
 # ABSTRACT: Read an INI file and expand bundles as you go.
 
 # AUTHORITY
 
 use Moo 1.000008 qw( has );
+use Scalar::Util qw( blessed );
 use Dist::Zilla::Util::BundleInfo 1.001000;
 
 has '_data' => (
@@ -93,7 +94,11 @@ Reads C<$source>, performs expansions, and emits C<$dest>
 
 sub filter_file {
   my ( $class, $input_fn, $output_fn ) = @_;
-  my $self = $class->new;
+  my $self = $class;
+  if ( not blessed $class ) {
+    $self = $class->new;
+  }
+  local $self->{_data} = {};    # contamination avoidance.
   $self->_load_file($input_fn);
   $self->_expand();
   $self->_store_file($output_fn);
@@ -110,7 +115,11 @@ Reads C<$reader>, performs expansions, and emits to C<$writer>
 
 sub filter_handle {
   my ( $class, $input_fh, $output_fh ) = @_;
-  my $self = $class->new;
+  my $self = $class;
+  if ( not blessed $class ) {
+    $self = $class->new;
+  }
+  local $self->{_data} = {};    # contamination avoidance.
   $self->_load_handle($input_fh);
   $self->_expand();
   $self->_store_handle($output_fh);
@@ -127,7 +136,11 @@ Decodes C<$source>, performs expansions, and returns expanded source.
 
 sub filter_string {
   my ( $class, $input_string ) = @_;
-  my $self = $class->new;
+  my $self = $class;
+  if ( not blessed $class ) {
+    $self = $class->new;
+  }
+  local $self->{_data} = {};    # contamination avoidance.
   $self->_load_string($input_string);
   $self->_expand();
   return $self->_store_string;
