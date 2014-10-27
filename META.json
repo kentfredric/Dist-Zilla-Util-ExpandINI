@@ -95,6 +95,7 @@
             "Config::INI::Writer" : "0.024",
             "Dist::Zilla::Util::BundleInfo" : "1.001000",
             "Moo" : "1.000008",
+            "Scalar::Util" : "0",
             "parent" : "0",
             "perl" : "5.008",
             "strict" : "0",
@@ -119,15 +120,15 @@
    "provides" : {
       "Dist::Zilla::Util::ExpandINI" : {
          "file" : "lib/Dist/Zilla/Util/ExpandINI.pm",
-         "version" : "0.001004"
+         "version" : "0.002000"
       },
       "Dist::Zilla::Util::ExpandINI::Reader" : {
          "file" : "lib/Dist/Zilla/Util/ExpandINI/Reader.pm",
-         "version" : "0.001004"
+         "version" : "0.002000"
       },
       "Dist::Zilla::Util::ExpandINI::Writer" : {
          "file" : "lib/Dist/Zilla/Util/ExpandINI/Writer.pm",
-         "version" : "0.001004"
+         "version" : "0.002000"
       }
    },
    "release_status" : "stable",
@@ -142,7 +143,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Util-ExpandINI"
       }
    },
-   "version" : "0.001004",
+   "version" : "0.002000",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142690",
@@ -204,6 +205,7 @@
          "File::Spec" : "3.49",
          "Moo" : "1.006001",
          "Pod::Coverage::TrustPod" : "0.100003",
+         "Scalar::Util" : "1.41",
          "Test::CPAN::Changes" : "0.30",
          "Test::CPAN::Meta" : "0.23",
          "Test::EOL" : "1.5",
@@ -693,7 +695,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "0.001004-source",
+                  "tag" : "0.002000-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -764,7 +766,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : "releases",
                   "signed" : 0,
-                  "tag" : "0.001004",
+                  "tag" : "0.002000",
                   "tag_format" : "%v",
                   "tag_message" : "v%v",
                   "time_zone" : "local"

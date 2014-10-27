@@ -1,6 +1,9 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
-0.001004 2014-10-27T03:17:02Z f28198b
+0.002000 2014-10-27T03:17:36Z 9327da4
+ [API]
+ - Now instantiable with ->new()
+
  [Dependencies::Stats]
  - Dependencies changed since 0.001003, see misc/*.deps* for details
  - configure: (recommends: ↑1)

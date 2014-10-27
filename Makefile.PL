@@ -26,6 +26,7 @@ my %WriteMakefileArgs = (
     "Config::INI::Writer" => "0.024",
     "Dist::Zilla::Util::BundleInfo" => "1.001000",
     "Moo" => "1.000008",
+    "Scalar::Util" => 0,
     "parent" => 0,
     "strict" => 0,
     "utf8" => 0,
@@ -37,7 +38,7 @@ my %WriteMakefileArgs = (
     "File::Spec" => 0,
     "Test::More" => "0.89"
   },
-  "VERSION" => "0.001004",
+  "VERSION" => "0.002000",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -53,6 +54,7 @@ my %FallbackPrereqs = (
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
   "Moo" => "1.000008",
+  "Scalar::Util" => 0,
   "Test::More" => "0.89",
   "parent" => 0,
   "strict" => 0,

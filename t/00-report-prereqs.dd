@@ -80,6 +80,7 @@ do { my $x = {
                                       'Config::INI::Writer' => '0.024',
                                       'Dist::Zilla::Util::BundleInfo' => '1.001000',
                                       'Moo' => '1.000008',
+                                      'Scalar::Util' => '0',
                                       'parent' => '0',
                                       'perl' => '5.008',
                                       'strict' => '0',
