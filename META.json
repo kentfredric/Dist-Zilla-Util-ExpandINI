@@ -1,7 +1,7 @@
 {
    "abstract" : "Read an INI file and expand bundles as you go.",
    "author" : [
-      "Kent Fredric <kentfredric@gmail.com>"
+      "Kent Fredric <kentnl@cpan.org>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Dist::Zilla version 5.021, CPAN::Meta::Converter version 2.142690",

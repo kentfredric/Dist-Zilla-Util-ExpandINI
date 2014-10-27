@@ -1,7 +1,7 @@
 ---
 abstract: 'Read an INI file and expand bundles as you go.'
 author:
-  - 'Kent Fredric <kentfredric@gmail.com>'
+  - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
   Dist::Zilla::PluginBundle::Classic: '0'
   ExtUtils::MakeMaker: '0'
