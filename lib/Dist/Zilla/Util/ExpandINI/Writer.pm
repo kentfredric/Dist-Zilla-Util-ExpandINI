@@ -40,6 +40,10 @@ sub preprocess_input {
   my $i = 0;
   for my $ini_record ( @{$input_data} ) {
     $i++;
+    if ( exists $ini_record->{type} and 'comment' eq $ini_record->{type} ) {
+      push @out, q[;], $ini_record->{content};
+      next;
+    }
     if ( $ini_record->{name} and '_' eq $ini_record->{name} ) {
       push @out, '_', $ini_record->{lines};
       next;
@@ -67,6 +71,7 @@ sub validate_input {
   while (@input_copy) {
     my ( $name, $props ) = splice @input_copy, 0, 2;
 
+    next if q[;] eq $name;
     if ( $seen{$name}++ ) {
       Carp::croak "multiple declarations found of $name";
     }
@@ -88,6 +93,14 @@ sub validate_input {
     }
   }
   return;
+}
+
+sub stringify_section {
+  my ( $self, $section_data ) = @_;
+  if ( q[;] eq $self->current_section ) {
+    return qq[\n;] . ( join qq[\n;], @{$section_data} ) . qq[\n];
+  }
+  return $self->SUPER::stringify_section($section_data);
 }
 1;
 

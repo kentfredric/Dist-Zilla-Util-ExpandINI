@@ -48,6 +48,16 @@ has '_writer_class' => (
   },
 );
 
+has 'include_does' => (
+  is      => 'ro',
+  default => sub { [] },
+);
+
+has 'exclude_does' => (
+  is      => 'ro',
+  default => sub { [] },
+);
+
 sub _load_file {
   my ( $self, $name ) = @_;
   $self->_data( $self->_read_file($name) );
@@ -98,6 +108,7 @@ sub filter_file {
   if ( not blessed $class ) {
     $self = $class->new;
   }
+  local $self->{_data} = {};    # contamination avoidance.
   $self->_load_file($input_fn);
   $self->_expand();
   $self->_store_file($output_fn);
@@ -118,6 +129,7 @@ sub filter_handle {
   if ( not blessed $class ) {
     $self = $class->new;
   }
+  local $self->{_data} = {};    # contamination avoidance.
   $self->_load_handle($input_fh);
   $self->_expand();
   $self->_store_handle($output_fh);
@@ -138,9 +150,39 @@ sub filter_string {
   if ( not blessed $class ) {
     $self = $class->new;
   }
+  local $self->{_data} = {};    # contamination avoidance.
   $self->_load_string($input_string);
   $self->_expand();
   return $self->_store_string;
+}
+
+sub _includes_module {
+  my ( $self, $module ) = @_;
+  return 1 unless @{ $self->include_does };
+  require Module::Runtime;
+  Module::Runtime::require_module($module);
+  for my $include ( @{ $self->include_does } ) {
+    return 1 if $module->does($include);
+  }
+  return;
+}
+
+sub _excludes_module {
+  my ( $self, $module ) = @_;
+  return unless @{ $self->exclude_does };
+  require Module::Runtime;
+  Module::Runtime::require_module($module);
+  for my $exclude ( @{ $self->exclude_does } ) {
+    return 1 if $module->does($exclude);
+  }
+  return;
+}
+
+sub _include_module {
+  my ( $self, $module ) = @_;
+  return unless $self->_includes_module($module);
+  return if $self->_excludes_module($module);
+  return 1;
 }
 
 sub _expand {
@@ -149,6 +191,12 @@ sub _expand {
   my @in = @{ $self->_data };
   while (@in) {
     my $tip = shift @in;
+
+    if ( exists $tip->{type} and 'comment' eq $tip->{type} ) {
+      push @out, $tip;
+      next;
+    }
+
     if ( $tip->{name} and '_' eq $tip->{name} ) {
       push @out, $tip;
       next;
@@ -164,6 +212,7 @@ sub _expand {
       bundle_payload => $tip->{lines},
     );
     for my $plugin ( $bundle->plugins ) {
+      next unless $self->_include_module( $plugin->module );
       my $rec = { package => $plugin->short_module };
       $rec->{name}  = $plugin->name;
       $rec->{lines} = [ $plugin->payload_list ];

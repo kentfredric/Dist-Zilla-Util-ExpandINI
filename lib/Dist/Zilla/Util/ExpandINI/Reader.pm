@@ -25,7 +25,18 @@ sub new {
 
   bless $self => $class;
   $self->{current_section} = { name => $self->starting_section, lines => [] };
+  $self->{pending_comments} = [];
+
   return $self;
+}
+
+sub can_ignore {
+  my ( $self, $line, $handle ) = @_;
+  if ( $line =~ /\A\s*;(.*$)/ ) {
+    push @{ $self->{pending_comments} }, "$1";
+    return 1;
+  }
+  return $line =~ /\A\s*$/ ? 1 : 0;
 }
 
 sub change_section {
@@ -48,6 +59,10 @@ sub change_section {
     unless $package;
 
   push @{ $self->{data} }, $self->{current_section};
+  if ( @{ $self->{pending_comments} } ) {
+    push @{ $self->{data} }, { type => 'comment', content => [ @{ $self->{pending_comments} } ] };
+    $self->{pending_comments} = [];
+  }
 
   if ( exists $self->{sections}->{$name} ) {
     Carp::croak qq{Duplicate section $name ( $package )};

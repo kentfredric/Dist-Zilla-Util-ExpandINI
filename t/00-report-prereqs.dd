@@ -80,6 +80,7 @@ do { my $x = {
                                       'Config::INI::Reader' => '0',
                                       'Config::INI::Writer' => '0.024',
                                       'Dist::Zilla::Util::BundleInfo' => '1.001000',
+                                      'Module::Runtime' => '0',
                                       'Moo' => '1.000008',
                                       'Scalar::Util' => '0',
                                       'parent' => '0',
@@ -99,6 +100,7 @@ do { my $x = {
                                    'Dist::Zilla::PluginBundle::Classic' => '0',
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec' => '0',
+                                   'Test::Differences' => '0',
                                    'Test::More' => '0.89',
                                    'perl' => '5.008'
                                  }
