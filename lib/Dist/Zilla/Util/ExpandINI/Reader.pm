@@ -59,6 +59,7 @@ sub change_section {
     unless $package;
 
   push @{ $self->{data} }, $self->{current_section};
+
   if ( @{ $self->{pending_comments} } ) {
     push @{ $self->{data} }, { type => 'comment', content => [ @{ $self->{pending_comments} } ] };
     $self->{pending_comments} = [];
@@ -78,6 +79,12 @@ sub change_section {
 
 sub set_value {
   my ( $self, $name, $value ) = @_;
+
+  if ( @{ $self->{pending_comments} } ) {
+    push @{ $self->{data} }, { type => 'comment', content => [ @{ $self->{pending_comments} } ] };
+    $self->{pending_comments} = [];
+  }
+
   push @{ $self->{current_section}->{lines} }, $name, $value;
   return;
 }
