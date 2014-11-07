@@ -4,12 +4,13 @@ do { my $x = {
                                           'ExtUtils::MakeMaker' => '7.00'
                                         },
                         'requires' => {
-                                        'ExtUtils::MakeMaker' => '0'
+                                        'ExtUtils::MakeMaker' => '0',
+                                        'perl' => '5.008'
                                       }
                       },
        'develop' => {
                       'recommends' => {
-                                        'Test::More' => '1.001008'
+                                        'Test::More' => '1.001009'
                                       },
                       'requires' => {
                                       'Dist::Zilla' => '5',
@@ -69,7 +70,7 @@ do { my $x = {
                                       'Test::Pod::Coverage' => '1.08'
                                     },
                       'suggests' => {
-                                      'Dist::Zilla::App::Command::bakeini' => '0.001003',
+                                      'Dist::Zilla::App::Command::bakeini' => '0.001004',
                                       'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.022000'
                                     }
                     },
@@ -92,13 +93,14 @@ do { my $x = {
                    'recommends' => {
                                      'CPAN::Meta' => '2.120900',
                                      'ExtUtils::MakeMaker' => '7.00',
-                                     'Test::More' => '1.001008'
+                                     'Test::More' => '1.001009'
                                    },
                    'requires' => {
                                    'Dist::Zilla::PluginBundle::Classic' => '0',
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec' => '0',
-                                   'Test::More' => '0.89'
+                                   'Test::More' => '0.89',
+                                   'perl' => '5.008'
                                  }
                  }
      };

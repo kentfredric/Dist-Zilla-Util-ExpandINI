@@ -1,6 +1,6 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
-0.002000 2014-10-27T03:17:36Z 9327da4
+0.002000 2014-10-27T03:20:02Z e4fda3f
  [API]
  - Now instantiable with ->new()
 
