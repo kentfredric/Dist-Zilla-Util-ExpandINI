@@ -14,14 +14,22 @@ version 0.002000
     version = 1.000
 
     [@Some::Author]
-    EOF;
+    EOF
 
-    path('dist.ini.meta')->spew( $string );
+    path('dist.ini.meta')->spew($string);
 
     # Generate a copy with bundles inlined.
     use Dist::Zilla::Util::ExpandINI;
     Dist::Zilla::Util::ExpandINI->filter_file( 'dist.ini.meta' => 'dist.ini' );
+
     # Hurrah, dist.ini has all the things!
+
+    # Advanced Usage:
+    my $filter = Dist::Zilla::Util::ExpandINI->new(
+      include_does => [ 'Dist::Zilla::Role::FileGatherer', ],
+      exclude_does => [ 'Dist::Zilla::Role::Releaser', ],
+    );
+    $filter->filter_file( 'dist.ini.meta' => 'dist.ini' );
 
 # DESCRIPTION
 
@@ -56,6 +64,28 @@ Reads `$reader`, performs expansions, and emits to `$writer`
     my $return = Dist::Zilla::Util::ExpandINI->filter_string($source);
 
 Decodes `$source`, performs expansions, and returns expanded source.
+
+# ATTRIBUTES
+
+## `include_does`
+
+An `ArrayRef` of `Role`s to include in the emitted `INI` from the source `INI`.
+
+If this `ArrayRef` is empty, all `Plugin`s will be included.
+
+This is the default behavior.
+
+    ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
+
+## `exclude_does`
+
+An `ArrayRef` of `Role`s to _exclude_ from the emitted `INI`.
+
+If this `ArrayRef` is empty, _no_ `Plugin`s will be _excluded_
+
+This is the default behavior.
+
+    ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
 
 # AUTHOR
 

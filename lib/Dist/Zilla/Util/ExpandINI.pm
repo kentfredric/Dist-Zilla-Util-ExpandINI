@@ -48,6 +48,16 @@ has '_writer_class' => (
   },
 );
 
+has 'include_does' => (
+  is      => 'ro',
+  default => sub { [] },
+);
+
+has 'exclude_does' => (
+  is      => 'ro',
+  default => sub { [] },
+);
+
 sub _load_file {
   my ( $self, $name ) = @_;
   $self->_data( $self->_read_file($name) );
@@ -146,6 +156,35 @@ sub filter_string {
   return $self->_store_string;
 }
 
+sub _includes_module {
+  my ( $self, $module ) = @_;
+  return 1 unless @{ $self->include_does };
+  require Module::Runtime;
+  Module::Runtime::require_module($module);
+  for my $include ( @{ $self->include_does } ) {
+    return 1 if $module->does($include);
+  }
+  return;
+}
+
+sub _excludes_module {
+  my ( $self, $module ) = @_;
+  return unless @{ $self->exclude_does };
+  require Module::Runtime;
+  Module::Runtime::require_module($module);
+  for my $exclude ( @{ $self->exclude_does } ) {
+    return 1 if $module->does($exclude);
+  }
+  return;
+}
+
+sub _include_module {
+  my ( $self, $module ) = @_;
+  return unless $self->_includes_module($module);
+  return if $self->_excludes_module($module);
+  return 1;
+}
+
 sub _expand {
   my ($self) = @_;
   my @out;
@@ -167,6 +206,7 @@ sub _expand {
       bundle_payload => $tip->{lines},
     );
     for my $plugin ( $bundle->plugins ) {
+      next unless $self->_include_module( $plugin->module );
       my $rec = { package => $plugin->short_module };
       $rec->{name}  = $plugin->name;
       $rec->{lines} = [ $plugin->payload_list ];
@@ -187,14 +227,22 @@ sub _expand {
   version = 1.000
 
   [@Some::Author]
-  EOF;
+  EOF
 
-  path('dist.ini.meta')->spew( $string );
+  path('dist.ini.meta')->spew($string);
 
   # Generate a copy with bundles inlined.
   use Dist::Zilla::Util::ExpandINI;
   Dist::Zilla::Util::ExpandINI->filter_file( 'dist.ini.meta' => 'dist.ini' );
+
   # Hurrah, dist.ini has all the things!
+
+  # Advanced Usage:
+  my $filter = Dist::Zilla::Util::ExpandINI->new(
+    include_does => [ 'Dist::Zilla::Role::FileGatherer', ],
+    exclude_does => [ 'Dist::Zilla::Role::Releaser', ],
+  );
+  $filter->filter_file( 'dist.ini.meta' => 'dist.ini' );
 
 =head1 DESCRIPTION
 
@@ -208,5 +256,25 @@ complexity of Config::MVP out of the loop.
 But at this stage, bundles are the I<only> thing modified in transit.
 
 Every thing else is practically a token-level copy-paste.
+
+=attr C<include_does>
+
+An C<ArrayRef> of C<Role>s to include in the emitted C<INI> from the source C<INI>.
+
+If this C<ArrayRef> is empty, all C<Plugin>s will be included.
+
+This is the default behavior.
+
+  ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
+
+=attr C<exclude_does>
+
+An C<ArrayRef> of C<Role>s to I<exclude> from the emitted C<INI>.
+
+If this C<ArrayRef> is empty, I<no> C<Plugin>s will be I<excluded>
+
+This is the default behavior.
+
+  ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
 
 =cut
