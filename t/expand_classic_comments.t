@@ -1,4 +1,8 @@
 #!/usr/bin/env perl
+# FILENAME: simple_io.pl
+# CREATED: 06/02/14 17:41:09 by Kent Fredric (kentnl) <kentfredric@gmail.com>
+# ABSTRACT: Test simple INI parsing capacity with bundles without loading them
+
 use strict;
 use warnings;
 use Test::More;
@@ -12,10 +16,12 @@ value = bar
 value = baz
 foo = quux
 
+; authordep Example
 [@Classic]
+;authordep Example
 
 [PackageTwo / NameTwo]
-value = baz
+value = baz ; ignored
 foo = quux
 EOF
 
@@ -24,6 +30,7 @@ name = Foo
 value = bar
 
 [Package / Name]
+; authordep Example
 value = baz
 foo = quux
 
@@ -60,6 +67,7 @@ foo = quux
 [ConfirmRelease / Dist::Zilla::PluginBundle::Classic/ConfirmRelease]
 
 [UploadToCPAN / Dist::Zilla::PluginBundle::Classic/UploadToCPAN]
+;authordep Example
 
 [PackageTwo / NameTwo]
 value = baz
@@ -68,8 +76,24 @@ EOEXPAND
 
 use Dist::Zilla::Util::ExpandINI;
 
-my $out = Dist::Zilla::Util::ExpandINI->filter_string($SAMPLE);
+my $ct = Dist::Zilla::Util::ExpandINI->new();
+$ct->_load_string($SAMPLE);
+$ct->_expand();
+my $ds = $ct->_data;
 
-is( $out, $EXPANDED, "Expanding formats as intended" );
+use Test::Differences qw( eq_or_diff );
+
+#note explain $ds;
+
+is( $ds->[0]->{name}, '_',    '_ section' );
+is( $ds->[1]->{name}, 'Name', 'First Package' );
+eq_or_diff( $ds->[1]->{lines}, [ 'value', 'baz', 'foo', 'quux' ], 'Values retain order' );
+is( $ds->[-1]->{name}, 'NameTwo', 'First Package' );
+eq_or_diff( $ds->[-1]->{lines}, [ 'value', 'baz', 'foo', 'quux' ], 'Plugins retain order' );
+
+#note explain $ds;
+my $out = $ct->_store_string;
+
+eq_or_diff( $out, $EXPANDED, "Expanding formats as intended" );
 
 done_testing;

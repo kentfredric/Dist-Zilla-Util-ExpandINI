@@ -1,11 +1,10 @@
-use 5.008;    # utf8
+use 5.006;
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Util::ExpandINI::Reader;
 
-our $VERSION = '0.001003';
+our $VERSION = '0.002000';
 
 # ABSTRACT: An order-preserving INI reader
 
@@ -24,8 +23,18 @@ sub new {
   };
 
   bless $self => $class;
-  $self->{current_section} = { name => $self->starting_section, lines => [] };
+  $self->{current_section} = { name => $self->starting_section, lines => [], comment_lines => [] };
+
   return $self;
+}
+
+sub can_ignore {
+  my ( $self, $line, ) = @_;
+  if ( $line =~ /\A\s*;(.*?)\s*$/msx ) {
+    push @{ $self->{current_section}->{comment_lines} }, "$1";
+    return 1;
+  }
+  return $line =~ /\A\s*$/msx ? 1 : 0;
 }
 
 sub change_section {
@@ -54,15 +63,17 @@ sub change_section {
   }
   $self->{sections}->{$name} = 1;
   $self->{current_section} = {
-    name    => $name,
-    package => $package,
-    lines   => [],
+    name          => $name,
+    package       => $package,
+    lines         => [],
+    comment_lines => [],
   };
   return;
 }
 
 sub set_value {
   my ( $self, $name, $value ) = @_;
+
   push @{ $self->{current_section}->{lines} }, $name, $value;
   return;
 }
@@ -87,11 +98,11 @@ Dist::Zilla::Util::ExpandINI::Reader - An order-preserving INI reader
 
 =head1 VERSION
 
-version 0.001003
+version 0.002000
 
 =head1 AUTHOR
 
-Kent Fredric <kentfredric@gmail.com>
+Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

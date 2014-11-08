@@ -1,17 +1,17 @@
-use 5.008;    # pragma utf8
+use 5.006;
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Util::ExpandINI;
 
-our $VERSION = '0.001003';
+our $VERSION = '0.002000';
 
 # ABSTRACT: Read an INI file and expand bundles as you go.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moo 1.000008 qw( has );
+use Scalar::Util qw( blessed );
 use Dist::Zilla::Util::BundleInfo 1.001000;
 
 has '_data' => (
@@ -45,6 +45,16 @@ has '_writer_class' => (
     _write_string => write_string =>,
     _write_handle => write_handle =>,
   },
+);
+
+has 'include_does' => (
+  is      => 'ro',
+  default => sub { [] },
+);
+
+has 'exclude_does' => (
+  is      => 'ro',
+  default => sub { [] },
 );
 
 sub _load_file {
@@ -93,7 +103,11 @@ sub _store_handle {
 
 sub filter_file {
   my ( $class, $input_fn, $output_fn ) = @_;
-  my $self = $class->new;
+  my $self = $class;
+  if ( not blessed $class ) {
+    $self = $class->new;
+  }
+  local $self->{_data} = {};    # contamination avoidance.
   $self->_load_file($input_fn);
   $self->_expand();
   $self->_store_file($output_fn);
@@ -110,7 +124,11 @@ sub filter_file {
 
 sub filter_handle {
   my ( $class, $input_fh, $output_fh ) = @_;
-  my $self = $class->new;
+  my $self = $class;
+  if ( not blessed $class ) {
+    $self = $class->new;
+  }
+  local $self->{_data} = {};    # contamination avoidance.
   $self->_load_handle($input_fh);
   $self->_expand();
   $self->_store_handle($output_fh);
@@ -127,10 +145,43 @@ sub filter_handle {
 
 sub filter_string {
   my ( $class, $input_string ) = @_;
-  my $self = $class->new;
+  my $self = $class;
+  if ( not blessed $class ) {
+    $self = $class->new;
+  }
+  local $self->{_data} = {};    # contamination avoidance.
   $self->_load_string($input_string);
   $self->_expand();
   return $self->_store_string;
+}
+
+sub _includes_module {
+  my ( $self, $module ) = @_;
+  return 1 unless @{ $self->include_does };
+  require Module::Runtime;
+  Module::Runtime::require_module($module);
+  for my $include ( @{ $self->include_does } ) {
+    return 1 if $module->does($include);
+  }
+  return;
+}
+
+sub _excludes_module {
+  my ( $self, $module ) = @_;
+  return unless @{ $self->exclude_does };
+  require Module::Runtime;
+  Module::Runtime::require_module($module);
+  for my $exclude ( @{ $self->exclude_does } ) {
+    return 1 if $module->does($exclude);
+  }
+  return;
+}
+
+sub _include_module {
+  my ( $self, $module ) = @_;
+  return unless $self->_includes_module($module);
+  return if $self->_excludes_module($module);
+  return 1;
 }
 
 sub _expand {
@@ -139,6 +190,7 @@ sub _expand {
   my @in = @{ $self->_data };
   while (@in) {
     my $tip = shift @in;
+
     if ( $tip->{name} and '_' eq $tip->{name} ) {
       push @out, $tip;
       next;
@@ -154,11 +206,16 @@ sub _expand {
       bundle_payload => $tip->{lines},
     );
     for my $plugin ( $bundle->plugins ) {
+      next unless $self->_include_module( $plugin->module );
       my $rec = { package => $plugin->short_module };
       $rec->{name}  = $plugin->name;
       $rec->{lines} = [ $plugin->payload_list ];
       push @out, $rec;
     }
+
+    # Inject any comments from under a bundle
+    $out[-1]->{comment_lines} = $tip->{comment_lines};
+
   }
   $self->_data( \@out );
   return;
@@ -178,7 +235,7 @@ Dist::Zilla::Util::ExpandINI - Read an INI file and expand bundles as you go.
 
 =head1 VERSION
 
-version 0.001003
+version 0.002000
 
 =head1 SYNOPSIS
 
@@ -188,14 +245,22 @@ version 0.001003
   version = 1.000
 
   [@Some::Author]
-  EOF;
+  EOF
 
-  path('dist.ini.meta')->spew( $string );
+  path('dist.ini.meta')->spew($string);
 
   # Generate a copy with bundles inlined.
   use Dist::Zilla::Util::ExpandINI;
   Dist::Zilla::Util::ExpandINI->filter_file( 'dist.ini.meta' => 'dist.ini' );
+
   # Hurrah, dist.ini has all the things!
+
+  # Advanced Usage:
+  my $filter = Dist::Zilla::Util::ExpandINI->new(
+    include_does => [ 'Dist::Zilla::Role::FileGatherer', ],
+    exclude_does => [ 'Dist::Zilla::Role::Releaser', ],
+  );
+  $filter->filter_file( 'dist.ini.meta' => 'dist.ini' );
 
 =head1 DESCRIPTION
 
@@ -231,9 +296,103 @@ Reads C<$reader>, performs expansions, and emits to C<$writer>
 
 Decodes C<$source>, performs expansions, and returns expanded source.
 
+=head1 ATTRIBUTES
+
+=head2 C<include_does>
+
+An C<ArrayRef> of C<Role>s to include in the emitted C<INI> from the source C<INI>.
+
+If this C<ArrayRef> is empty, all C<Plugin>s will be included.
+
+This is the default behavior.
+
+  ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
+
+=head2 C<exclude_does>
+
+An C<ArrayRef> of C<Role>s to I<exclude> from the emitted C<INI>.
+
+If this C<ArrayRef> is empty, I<no> C<Plugin>s will be I<excluded>
+
+This is the default behavior.
+
+  ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
+
+=head1 COMMENT PRESERVATION
+
+Comments are ( since C<v0.002000> ) arbitrarily supported in a very basic way.
+But the behavior may be surprising.
+
+  [SectionHeader]
+  BODY
+  [SectionHeader]
+  BODY
+
+Is how C<Config::INI> understands its content. So comment parsing is implemented as
+
+  BODY:
+    comments: [ "A", "B", "C" ],
+    params:   [ "x=y","foo=bar" ]
+
+So:
+
+  [Header]
+  ;A
+  x = y ; Trailing Note
+  ;B
+  foo = bar ; Trailing Note
+
+  ;Remark About Header2
+  [Header2]
+
+Is re-serialized as:
+
+  [Header]
+  ;A
+  ;B
+  ;Remark About Header2
+  x = y
+  foo = bar
+
+  [Header2]
+
+This behavior may seem surprising, but its surprising only if you
+have assumptions about how C<INI> parsing works.
+
+This also applies and has strange effects with bundles:
+
+  [Header]
+  x = y
+
+  ; CommentAboutBundle
+  [@Bundle]
+  ; More Comments About Bundle
+
+  [Header2]
+
+This expands as:
+
+  [Header]
+  ; CommentAboutBundle
+  x = y
+
+  [BundleHeader1]
+  arg = value
+
+  [BundleHeader2]
+  arg = value
+
+  [BundleHeader3]
+  ; More Comments About Bundle
+  arg = value
+
+  [Header2]
+
+And also note, at this time, only whole-line comments are preserved. Suffix comments are stripped.
+
 =head1 AUTHOR
 
-Kent Fredric <kentfredric@gmail.com>
+Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

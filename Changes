@@ -1,5 +1,24 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
+0.002000 2014-11-08T01:53:39Z da7e0e7
+ [API]
+ - Now properly instantiable with ->new()
+ - Can pass "include_does" and "exclude_does" which take arrays of roles to include/exclude from the results.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.001003, see misc/*.deps* for details
+ - configure: +1 (recommends: ↑1)
+ - develop: +7 ↑2 -1 (recommends: +1, suggests: ↑2)
+ - runtime: +2 ↓1 -1
+ - test: +2 (recommends: ↑2)
+
+ [Features]
+ - Comments are preserved in some way, though they may move around a bit.
+ - This is mostly to support transferral of authordeps. ( kentnl/Dist-Zilla-App-Command-bakeini#1 )
+
+ [Metadata]
+ - author = kentnl
+
 0.001003 2014-08-15T22:30:33Z
  [00 Trivial]
  - CPANDAY!
