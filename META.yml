@@ -22,13 +22,13 @@ name: Dist-Zilla-Util-ExpandINI
 provides:
   Dist::Zilla::Util::ExpandINI:
     file: lib/Dist/Zilla/Util/ExpandINI.pm
-    version: '0.002000'
+    version: '0.002001'
   Dist::Zilla::Util::ExpandINI::Reader:
     file: lib/Dist/Zilla/Util/ExpandINI/Reader.pm
-    version: '0.002000'
+    version: '0.002001'
   Dist::Zilla::Util::ExpandINI::Writer:
     file: lib/Dist/Zilla/Util/ExpandINI/Writer.pm
-    version: '0.002000'
+    version: '0.002001'
 requires:
   Carp: '0'
   Config::INI::Reader: '0'
@@ -45,7 +45,7 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI
   repository: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI.git
-version: '0.002000'
+version: '0.002001'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142690'
@@ -488,7 +488,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 0.002000-source
+          tag: 0.002001-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -542,7 +542,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '0.002000'
+          tag: '0.002001'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
