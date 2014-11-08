@@ -92,8 +92,8 @@ sub validate_input {
 
 sub stringify_section_data {
   my ( $self, $ini_record ) = @_;
-  my $output = '';
-  $output .= ';' . $_ . qq[\n] for @{ $ini_record->{comment_lines} };
+  my $output = q[];
+  $output .= q[;] . $_ . qq[\n] for @{ $ini_record->{comment_lines} };
   $output .= $self->SUPER::stringify_section_data( $ini_record->{lines} );
   return $output;
 }
