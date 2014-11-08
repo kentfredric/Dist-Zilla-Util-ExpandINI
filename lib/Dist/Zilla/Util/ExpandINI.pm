@@ -329,6 +329,8 @@ This is the default behavior.
 
   ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
 
+( API Since C<0.002000> )
+
 =head2 C<exclude_does>
 
 An C<ArrayRef> of C<Role>s to I<exclude> from the emitted C<INI>.
@@ -338,6 +340,16 @@ If this C<ArrayRef> is empty, I<no> C<Plugin>s will be I<excluded>
 This is the default behavior.
 
   ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
+
+( API Since C<0.002000> )
+
+=head2 C<comments>
+
+This attribute controls how comments are handled.
+
+=for :list * C<all> - All comments are copied ( B<Default>
+* C<authordeps> - Only comments that look like C<Dist::Zilla> C<AuthorDeps> are copied.
+* C<none> - No comments are copied.
 
 =head1 COMMENT PRESERVATION
 
