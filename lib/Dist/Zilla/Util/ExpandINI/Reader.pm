@@ -30,7 +30,7 @@ sub new {
 
 sub can_ignore {
   my ( $self, $line, ) = @_;
-  if ( $line =~ /\A\s*;(.*$)/msx ) {
+  if ( $line =~ /\A\s*;(.*?)\s*$/msx ) {
     push @{ $self->{current_section}->{comment_lines} }, "$1";
     return 1;
   }
