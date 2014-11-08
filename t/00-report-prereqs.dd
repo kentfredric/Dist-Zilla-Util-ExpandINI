@@ -84,7 +84,7 @@ do { my $x = {
                                       'Moo' => '1.000008',
                                       'Scalar::Util' => '0',
                                       'parent' => '0',
-                                      'perl' => '5.008',
+                                      'perl' => '5.006',
                                       'strict' => '0',
                                       'warnings' => '0'
                                     }
@@ -101,8 +101,7 @@ do { my $x = {
                                    'File::Spec' => '0',
                                    'Test::Differences' => '0',
                                    'Test::More' => '0.89',
-                                   'perl' => '5.008',
-                                   'utf8' => '0'
+                                   'perl' => '5.006'
                                  }
                  }
      };

@@ -8,8 +8,7 @@ build_requires:
   File::Spec: '0'
   Test::Differences: '0'
   Test::More: '0.89'
-  perl: '5.008'
-  utf8: '0'
+  perl: '5.006'
 configure_requires:
   ExtUtils::MakeMaker: '0'
   perl: '5.006'
@@ -39,7 +38,7 @@ requires:
   Moo: '1.000008'
   Scalar::Util: '0'
   parent: '0'
-  perl: '5.008'
+  perl: '5.006'
   strict: '0'
   warnings: '0'
 resources:
@@ -120,7 +119,6 @@ x_BuiltWith:
     Test::Pod::Coverage: '1.10'
     parent: '0.228'
     strict: '1.08'
-    utf8: '1.14'
     warnings: '1.26'
   perl:
     original: v5.21.3

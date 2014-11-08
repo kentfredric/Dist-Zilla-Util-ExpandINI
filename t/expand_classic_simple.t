@@ -1,7 +1,6 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use utf8;
 use Test::More;
 use Dist::Zilla::PluginBundle::Classic;
 
