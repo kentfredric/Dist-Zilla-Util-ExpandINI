@@ -4,7 +4,7 @@ Dist::Zilla::Util::ExpandINI - Read an INI file and expand bundles as you go.
 
 # VERSION
 
-version 0.002000
+version 0.002001
 
 # SYNOPSIS
 
