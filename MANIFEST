@@ -27,8 +27,11 @@ t/00-compile/lib_Dist_Zilla_Util_ExpandINI_Writer_pm.t
 t/00-compile/lib_Dist_Zilla_Util_ExpandINI_pm.t
 t/00-report-prereqs.dd
 t/00-report-prereqs.t
+t/comments/all.t
+t/comments/authordeps.t
+t/comments/basic.t
+t/comments/none.t
 t/expand_classic.t
-t/expand_classic_comments.t
 t/expand_classic_fitered.t
 t/expand_classic_simple.t
 t/simple_io.t
