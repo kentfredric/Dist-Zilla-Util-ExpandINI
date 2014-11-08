@@ -213,7 +213,7 @@ sub _expand {
       $rec->{lines} = [ $plugin->payload_list ],
       push @out, $rec;
     }
-    # Inject any comments from under a bundle 
+    # Inject any comments from under a bundle
     $out[-1]->{comment_lines} = $tip->{comment_lines};
 
   }
