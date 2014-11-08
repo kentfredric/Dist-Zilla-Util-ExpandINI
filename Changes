@@ -1,6 +1,12 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
 0.002001 2014-11-08T11:50:57Z 2ff3832
+ [API]
+ - Can now pass `comments => ` with any of the following values to control comment handling.
+ - `all`, all comments are copied.
+ - `authordeps`, only comments that look like Dist::Zilla AuthorDeps are copied.
+ - `none`, no comments are copied.
+ - Thanks to Alan Young ( Harley Pig ) for the contributions.
 
 0.002000 2014-11-08T01:53:39Z da7e0e7
  [API]
