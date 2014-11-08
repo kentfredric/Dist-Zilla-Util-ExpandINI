@@ -77,6 +77,8 @@ This is the default behavior.
 
     ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
 
+( `API` Since `0.002000` )
+
 ## `exclude_does`
 
 An `ArrayRef` of `Role`s to _exclude_ from the emitted `INI`.
@@ -86,6 +88,8 @@ If this `ArrayRef` is empty, _no_ `Plugin`s will be _excluded_
 This is the default behavior.
 
     ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
+
+( `API` Since `0.002000` )
 
 ## `comments`
 

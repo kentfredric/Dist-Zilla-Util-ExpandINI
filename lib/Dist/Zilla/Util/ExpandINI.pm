@@ -292,6 +292,8 @@ This is the default behavior.
 
   ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
 
+( C<API> Since C<0.002000> )
+
 =attr C<exclude_does>
 
 An C<ArrayRef> of C<Role>s to I<exclude> from the emitted C<INI>.
@@ -301,6 +303,8 @@ If this C<ArrayRef> is empty, I<no> C<Plugin>s will be I<excluded>
 This is the default behavior.
 
   ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
+
+( C<API> Since C<0.002000> )
 
 =attr C<comments>
 
