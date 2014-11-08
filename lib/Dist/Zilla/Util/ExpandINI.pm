@@ -363,7 +363,7 @@ C<none> - No comments are copied.
 
 =back
 
-( C<API> Since C<0.003000> ) 
+( C<API> Since C<0.003000> )
 
 =head1 COMMENT PRESERVATION
 

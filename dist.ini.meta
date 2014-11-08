@@ -23,4 +23,3 @@ srcreadme         = mkdn
 
 [Prereqs]
 ; authordep Pod::Elemental::Transformer::List
-
