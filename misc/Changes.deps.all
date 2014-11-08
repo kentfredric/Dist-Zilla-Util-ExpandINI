@@ -17,9 +17,11 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Test::More
 
  [Added / runtime requires]
+ - Module::Runtime
  - Scalar::Util
 
  [Added / test requires]
+ - Test::Differences
  - perl 5.008
 
  [Changed / configure recommends]

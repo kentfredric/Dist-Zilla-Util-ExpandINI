@@ -191,6 +191,7 @@ sub _expand {
   my @in = @{ $self->_data };
   while (@in) {
     my $tip = shift @in;
+
     if ( $tip->{name} and '_' eq $tip->{name} ) {
       push @out, $tip;
       next;
@@ -212,6 +213,10 @@ sub _expand {
       $rec->{lines} = [ $plugin->payload_list ];
       push @out, $rec;
     }
+
+    # Inject any comments from under a bundle
+    $out[-1]->{comment_lines} = $tip->{comment_lines};
+
   }
   $self->_data( \@out );
   return;
@@ -276,5 +281,77 @@ If this C<ArrayRef> is empty, I<no> C<Plugin>s will be I<excluded>
 This is the default behavior.
 
   ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
+
+=head1 COMMENT PRESERVATION
+
+Comments are ( since C<v0.002000> ) arbitrarily supported in a very basic way.
+But the behavior may be surprising.
+
+  [SectionHeader]
+  BODY
+  [SectionHeader]
+  BODY
+
+Is how C<Config::INI> understands its content. So comment parsing is implemented as
+
+  BODY:
+    comments: [ "A", "B", "C" ],
+    params:   [ "x=y","foo=bar" ]
+
+So:
+
+  [Header]
+  ;A
+  x = y ; Trailing Note
+  ;B
+  foo = bar ; Trailing Note
+
+  ;Remark About Header2
+  [Header2]
+
+Is re-serialized as:
+
+  [Header]
+  ;A
+  ;B
+  ;Remark About Header2
+  x = y
+  foo = bar
+
+  [Header2]
+
+This behavior may seem surprising, but its surprising only if you
+have assumptions about how C<INI> parsing works.
+
+This also applies and has strange effects with bundles:
+
+  [Header]
+  x = y
+
+  ; CommentAboutBundle
+  [@Bundle]
+  ; More Comments About Bundle
+
+  [Header2]
+
+This expands as:
+
+  [Header]
+  ; CommentAboutBundle
+  x = y
+
+  [BundleHeader1]
+  arg = value
+
+  [BundleHeader2]
+  arg = value
+
+  [BundleHeader3]
+  ; More Comments About Bundle
+  arg = value
+
+  [Header2]
+
+And also note, at this time, only whole-line comments are preserved. Suffix comments are stripped.
 
 =cut

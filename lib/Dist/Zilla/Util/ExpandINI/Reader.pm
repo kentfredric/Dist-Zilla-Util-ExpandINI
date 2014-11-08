@@ -24,8 +24,18 @@ sub new {
   };
 
   bless $self => $class;
-  $self->{current_section} = { name => $self->starting_section, lines => [] };
+  $self->{current_section} = { name => $self->starting_section, lines => [], comment_lines => [] };
+
   return $self;
+}
+
+sub can_ignore {
+  my ( $self, $line, ) = @_;
+  if ( $line =~ /\A\s*;(.*?)\s*$/msx ) {
+    push @{ $self->{current_section}->{comment_lines} }, "$1";
+    return 1;
+  }
+  return $line =~ /\A\s*$/msx ? 1 : 0;
 }
 
 sub change_section {
@@ -54,15 +64,17 @@ sub change_section {
   }
   $self->{sections}->{$name} = 1;
   $self->{current_section} = {
-    name    => $name,
-    package => $package,
-    lines   => [],
+    name          => $name,
+    package       => $package,
+    lines         => [],
+    comment_lines => [],
   };
   return;
 }
 
 sub set_value {
   my ( $self, $name, $value ) = @_;
+
   push @{ $self->{current_section}->{lines} }, $name, $value;
   return;
 }

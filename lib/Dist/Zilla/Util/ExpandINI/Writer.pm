@@ -41,7 +41,7 @@ sub preprocess_input {
   for my $ini_record ( @{$input_data} ) {
     $i++;
     if ( $ini_record->{name} and '_' eq $ini_record->{name} ) {
-      push @out, '_', $ini_record->{lines};
+      push @out, '_', $ini_record;
       next;
     }
     if ( not $ini_record->{package} ) {
@@ -51,7 +51,7 @@ sub preprocess_input {
     if ( $ini_record->{name} and $ini_record->{package} ne $ini_record->{name} ) {
       $kn .= q[ / ] . $ini_record->{name};
     }
-    push @out, $kn, $ini_record->{lines};
+    push @out, $kn, $ini_record;
     next;
   }
   return \@out;
@@ -65,7 +65,7 @@ sub validate_input {
   my @input_copy = @{$input};
 
   while (@input_copy) {
-    my ( $name, $props ) = splice @input_copy, 0, 2;
+    my ( $name, $ini_record ) = splice @input_copy, 0, 2;
 
     if ( $seen{$name}++ ) {
       Carp::croak "multiple declarations found of $name";
@@ -74,7 +74,7 @@ sub validate_input {
     Carp::croak "illegal section name '$name'"
       if not $self->is_valid_section_name($name);
 
-    my @props_copy = @{$props};
+    my @props_copy = @{ $ini_record->{lines} };
 
     while (@props_copy) {
       my ( $property, $value ) = splice @props_copy, 0, 2;
@@ -88,5 +88,13 @@ sub validate_input {
     }
   }
   return;
+}
+
+sub stringify_section_data {
+  my ( $self, $ini_record ) = @_;
+  my $output = q[];
+  $output .= q[;] . $_ . qq[\n] for @{ $ini_record->{comment_lines} };
+  $output .= $self->SUPER::stringify_section_data( $ini_record->{lines} );
+  return $output;
 }
 1;
