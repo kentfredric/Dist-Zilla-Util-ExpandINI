@@ -345,7 +345,7 @@ So:
   ;Remark About Header2
   [Header2]
 
-Is reserialised as:
+Is reserialized as:
 
   [Header]
   ;A
