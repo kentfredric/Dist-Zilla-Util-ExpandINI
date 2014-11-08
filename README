@@ -95,6 +95,8 @@ ATTRIBUTES
 
     *   "none" - No comments are copied.
 
+    ( API Since 0.003000 )
+
 COMMENT PRESERVATION
     Comments are ( since "v0.002000" ) arbitrarily supported in a very basic
     way. But the behavior may be surprising.

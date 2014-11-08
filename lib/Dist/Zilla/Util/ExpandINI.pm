@@ -363,6 +363,8 @@ C<none> - No comments are copied.
 
 =back
 
+( API Since C<0.003000> ) 
+
 =head1 COMMENT PRESERVATION
 
 Comments are ( since C<v0.002000> ) arbitrarily supported in a very basic way.
