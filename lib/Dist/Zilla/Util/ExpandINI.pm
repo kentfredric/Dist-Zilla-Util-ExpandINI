@@ -57,6 +57,12 @@ has 'exclude_does' => (
   default => sub { [] },
 );
 
+has 'comments' => (
+  is      => 'rw',
+  isa     => sub { die 'comments accepts all, none or authordeps' unless $_[0] =~ /^(?:all|none|authordeps)$/ },
+  default => sub { return 'all' },
+);
+
 sub _load_file {
   my ( $self, $name ) = @_;
   $self->_data( $self->_read_file($name) );
@@ -191,6 +197,8 @@ sub _expand {
   while (@in) {
     my $tip = shift @in;
 
+    $tip->{comment_lines} = $self->_clean_comment_lines( $tip->{comment_lines} );
+
     if ( $tip->{name} and '_' eq $tip->{name} ) {
       push @out, $tip;
       next;
@@ -221,6 +229,12 @@ sub _expand {
   return;
 }
 
+sub _clean_comment_lines {
+  my ( $self , $lines ) = @_;
+  return $lines if  q[all] eq $self->comments;
+  return [ grep { /^\s+authordep\s+/ } @{$lines} ] if q[authordeps] eq $self->comments;
+  return [ ];
+}
 1;
 
 =head1 SYNOPSIS
