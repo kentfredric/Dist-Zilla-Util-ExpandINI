@@ -1,6 +1,6 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
-0.002000 2014-11-08T00:42:22Z b56b658
+0.002000 2014-11-08T01:09:26Z bb833a6
  [API]
  - Now properly instantiable with ->new()
  - Can pass "include_does" and "exclude_does" which take arrays of roles to include/exclude from the results.
