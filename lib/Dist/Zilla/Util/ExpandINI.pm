@@ -329,7 +329,7 @@ This is the default behavior.
 
   ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
 
-( API Since C<0.002000> )
+( C<API> Since C<0.002000> )
 
 =head2 C<exclude_does>
 
@@ -341,7 +341,7 @@ This is the default behavior.
 
   ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
 
-( API Since C<0.002000> )
+( C<API> Since C<0.002000> )
 
 =head2 C<comments>
 
@@ -363,7 +363,7 @@ C<none> - No comments are copied.
 
 =back
 
-( API Since C<0.003000> ) 
+( C<API> Since C<0.003000> ) 
 
 =head1 COMMENT PRESERVATION
 
