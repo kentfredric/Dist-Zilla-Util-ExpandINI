@@ -65,7 +65,7 @@ sub validate_input {
   my @input_copy = @{$input};
 
   while (@input_copy) {
-    my ( $name, $record ) = splice @input_copy, 0, 2;
+    my ( $name, $ini_record ) = splice @input_copy, 0, 2;
 
     if ( $seen{$name}++ ) {
       Carp::croak "multiple declarations found of $name";
@@ -74,7 +74,7 @@ sub validate_input {
     Carp::croak "illegal section name '$name'"
       if not $self->is_valid_section_name($name);
 
-    my @props_copy = @{ $record->{lines} };
+    my @props_copy = @{ $ini_record->{lines} };
 
     while (@props_copy) {
       my ( $property, $value ) = splice @props_copy, 0, 2;
