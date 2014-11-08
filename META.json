@@ -76,6 +76,7 @@
             "Dist::Zilla::Plugin::Twitter" : "0",
             "Dist::Zilla::Plugin::UploadToCPAN" : "0",
             "Pod::Coverage::TrustPod" : "0",
+            "Pod::Elemental::Transformer::List" : "0",
             "Test::CPAN::Changes" : "0.19",
             "Test::CPAN::Meta" : "0",
             "Test::EOL" : "0",
@@ -123,15 +124,15 @@
    "provides" : {
       "Dist::Zilla::Util::ExpandINI" : {
          "file" : "lib/Dist/Zilla/Util/ExpandINI.pm",
-         "version" : "0.002000"
+         "version" : "0.003000"
       },
       "Dist::Zilla::Util::ExpandINI::Reader" : {
          "file" : "lib/Dist/Zilla/Util/ExpandINI/Reader.pm",
-         "version" : "0.002000"
+         "version" : "0.003000"
       },
       "Dist::Zilla::Util::ExpandINI::Writer" : {
          "file" : "lib/Dist/Zilla/Util/ExpandINI/Writer.pm",
-         "version" : "0.002000"
+         "version" : "0.003000"
       }
    },
    "release_status" : "stable",
@@ -146,7 +147,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Util-ExpandINI"
       }
    },
-   "version" : "0.002000",
+   "version" : "0.003000",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142690",
@@ -209,6 +210,7 @@
          "Module::Runtime" : "0.014",
          "Moo" : "1.006001",
          "Pod::Coverage::TrustPod" : "0.100003",
+         "Pod::Elemental::Transformer::List" : "0.102000",
          "Scalar::Util" : "1.41",
          "Test::CPAN::Changes" : "0.30",
          "Test::CPAN::Meta" : "0.23",
@@ -561,6 +563,11 @@
                         "class" : "Pod::Weaver::Section::Legal",
                         "name" : "Legal",
                         "version" : "4.007"
+                     },
+                     {
+                        "class" : "Pod::Weaver::Plugin::Transformer",
+                        "name" : "-Transformer",
+                        "version" : "4.007"
                      }
                   ]
                }
@@ -699,7 +706,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "0.002000-source",
+                  "tag" : "0.003000-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -770,7 +777,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : "releases",
                   "signed" : 0,
-                  "tag" : "0.002000",
+                  "tag" : "0.003000",
                   "tag_format" : "%v",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -918,5 +925,8 @@
          "version" : "5.024"
       }
    },
-   "x_authority" : "cpan:KENTNL"
+   "x_authority" : "cpan:KENTNL",
+   "x_contributors" : [
+      "Harley Pig <harleypig@gmail.com>"
+   ]
 }

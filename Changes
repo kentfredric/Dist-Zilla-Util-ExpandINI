@@ -1,5 +1,18 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
+0.003000 2014-11-08T12:17:58Z 6a88090
+ [API]
+ - Can now pass `comments => ` with any of the following values to control comment handling.
+ - `all`, all comments are copied.
+ - `authordeps`, only comments that look like Dist::Zilla AuthorDeps are copied.
+ - `none`, no comments are copied.
+ - Default is `all`.
+ - Thanks to Alan Young ( AYOUNG ) for the contributions ( Github #1 ).
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.002000, see misc/*.deps* for details
+ - develop: +1
+
 0.002000 2014-11-08T01:53:39Z da7e0e7
  [API]
  - Now properly instantiable with ->new()

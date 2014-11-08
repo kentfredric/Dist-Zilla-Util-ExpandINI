@@ -22,13 +22,13 @@ name: Dist-Zilla-Util-ExpandINI
 provides:
   Dist::Zilla::Util::ExpandINI:
     file: lib/Dist/Zilla/Util/ExpandINI.pm
-    version: '0.002000'
+    version: '0.003000'
   Dist::Zilla::Util::ExpandINI::Reader:
     file: lib/Dist/Zilla/Util/ExpandINI/Reader.pm
-    version: '0.002000'
+    version: '0.003000'
   Dist::Zilla::Util::ExpandINI::Writer:
     file: lib/Dist/Zilla/Util/ExpandINI/Writer.pm
-    version: '0.002000'
+    version: '0.003000'
 requires:
   Carp: '0'
   Config::INI::Reader: '0'
@@ -45,7 +45,7 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI
   repository: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI.git
-version: '0.002000'
+version: '0.003000'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142690'
@@ -108,6 +108,7 @@ x_BuiltWith:
     Module::Runtime: '0.014'
     Moo: '1.006001'
     Pod::Coverage::TrustPod: '0.100003'
+    Pod::Elemental::Transformer::List: '0.102000'
     Scalar::Util: '1.41'
     Test::CPAN::Changes: '0.30'
     Test::CPAN::Meta: '0.23'
@@ -386,6 +387,10 @@ x_Dist_Zilla:
               class: Pod::Weaver::Section::Legal
               name: Legal
               version: '4.007'
+            -
+              class: Pod::Weaver::Plugin::Transformer
+              name: -Transformer
+              version: '4.007'
       name: '@Author::KENTNL/PodWeaver'
       version: '4.006'
     -
@@ -488,7 +493,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 0.002000-source
+          tag: 0.003000-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -542,7 +547,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '0.002000'
+          tag: '0.003000'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
@@ -654,3 +659,5 @@ x_Dist_Zilla:
       is_trial: '0'
     version: '5.024'
 x_authority: cpan:KENTNL
+x_contributors:
+  - 'Harley Pig <harleypig@gmail.com>'

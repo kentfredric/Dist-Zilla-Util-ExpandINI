@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Util::ExpandINI::Writer;
 
-our $VERSION = '0.002000';
+our $VERSION = '0.003000';
 
 # ABSTRACT: An order-preserving INI Writer
 
@@ -110,7 +110,7 @@ Dist::Zilla::Util::ExpandINI::Writer - An order-preserving INI Writer
 
 =head1 VERSION
 
-version 0.002000
+version 0.003000
 
 =for Pod::Coverage is_valid_section_name
 

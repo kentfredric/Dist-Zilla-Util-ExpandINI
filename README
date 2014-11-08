@@ -3,7 +3,7 @@ NAME
     you go.
 
 VERSION
-    version 0.002000
+    version 0.003000
 
 SYNOPSIS
       # Write a dist.ini with a bundle anywhere you like
@@ -72,6 +72,8 @@ ATTRIBUTES
 
       ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
 
+    ( "API" Since 0.002000 )
+
   "exclude_does"
     An "ArrayRef" of "Role"s to *exclude* from the emitted "INI".
 
@@ -80,6 +82,20 @@ ATTRIBUTES
     This is the default behavior.
 
       ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
+
+    ( "API" Since 0.002000 )
+
+  "comments"
+    This attribute controls how comments are handled.
+
+    *   "all" - All comments are copied ( Default )
+
+    *   "authordeps" - Only comments that look like "Dist::Zilla"
+        "AuthorDeps" are copied.
+
+    *   "none" - No comments are copied.
+
+    ( "API" Since 0.003000 )
 
 COMMENT PRESERVATION
     Comments are ( since "v0.002000" ) arbitrarily supported in a very basic
