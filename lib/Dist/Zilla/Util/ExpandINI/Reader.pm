@@ -1,7 +1,6 @@
-use 5.008;    # utf8
+use 5.006;
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Util::ExpandINI::Reader;
 
@@ -32,7 +31,7 @@ sub new {
 sub can_ignore {
   my ( $self, $line, ) = @_;
   if ( $line =~ /\A\s*;(.*$)/msx ) {
-    push @{ $self->{current_section}->{comment_lines} },"$1";
+    push @{ $self->{current_section}->{comment_lines} }, "$1";
     return 1;
   }
   return $line =~ /\A\s*$/msx ? 1 : 0;
@@ -64,9 +63,9 @@ sub change_section {
   }
   $self->{sections}->{$name} = 1;
   $self->{current_section} = {
-    name    => $name,
-    package => $package,
-    lines   => [],
+    name          => $name,
+    package       => $package,
+    lines         => [],
     comment_lines => [],
   };
   return;

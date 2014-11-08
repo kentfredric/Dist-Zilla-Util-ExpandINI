@@ -30,7 +30,6 @@ my %WriteMakefileArgs = (
     "Scalar::Util" => 0,
     "parent" => 0,
     "strict" => 0,
-    "utf8" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
@@ -38,7 +37,8 @@ my %WriteMakefileArgs = (
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
     "Test::Differences" => 0,
-    "Test::More" => "0.89"
+    "Test::More" => "0.89",
+    "utf8" => 0
   },
   "VERSION" => "0.002000",
   "test" => {

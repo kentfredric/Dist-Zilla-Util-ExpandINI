@@ -9,9 +9,10 @@ build_requires:
   Test::Differences: '0'
   Test::More: '0.89'
   perl: '5.008'
+  utf8: '0'
 configure_requires:
   ExtUtils::MakeMaker: '0'
-  perl: '5.008'
+  perl: '5.006'
 dynamic_config: '0'
 generated_by: 'Dist::Zilla version 5.024, CPAN::Meta::Converter version 2.142690'
 license: perl
@@ -40,7 +41,6 @@ requires:
   parent: '0'
   perl: '5.008'
   strict: '0'
-  utf8: '0'
   warnings: '0'
 resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI/issues

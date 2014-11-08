@@ -1,7 +1,6 @@
-use 5.008;    # pragma utf8
+use 5.006;
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Util::ExpandINI;
 
@@ -213,6 +212,7 @@ sub _expand {
       $rec->{lines} = [ $plugin->payload_list ];
       push @out, $rec;
     }
+
     # Inject any comments from under a bundle
     $out[-1]->{comment_lines} = $tip->{comment_lines};
 
