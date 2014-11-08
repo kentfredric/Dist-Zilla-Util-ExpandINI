@@ -288,6 +288,28 @@ Reads C<$reader>, performs expansions, and emits to C<$writer>
 
 Decodes C<$source>, performs expansions, and returns expanded source.
 
+=head1 ATTRIBUTES
+
+=head2 C<include_does>
+
+An C<ArrayRef> of C<Role>s to include in the emitted C<INI> from the source C<INI>.
+
+If this C<ArrayRef> is empty, all C<Plugin>s will be included.
+
+This is the default behavior.
+
+  ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
+
+=head2 C<exclude_does>
+
+An C<ArrayRef> of C<Role>s to I<exclude> from the emitted C<INI>.
+
+If this C<ArrayRef> is empty, I<no> C<Plugin>s will be I<excluded>
+
+This is the default behavior.
+
+  ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
+
 =head1 AUTHOR
 
 Kent Fredric <kentnl@cpan.org>

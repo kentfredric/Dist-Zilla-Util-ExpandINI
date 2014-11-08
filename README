@@ -53,6 +53,26 @@ METHODS
 
     Decodes $source, performs expansions, and returns expanded source.
 
+ATTRIBUTES
+  "include_does"
+    An "ArrayRef" of "Role"s to include in the emitted "INI" from the source
+    "INI".
+
+    If this "ArrayRef" is empty, all "Plugin"s will be included.
+
+    This is the default behavior.
+
+      ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
+
+  "exclude_does"
+    An "ArrayRef" of "Role"s to *exclude* from the emitted "INI".
+
+    If this "ArrayRef" is empty, *no* "Plugin"s will be *excluded*
+
+    This is the default behavior.
+
+      ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
+
 AUTHOR
     Kent Fredric <kentnl@cpan.org>
 
