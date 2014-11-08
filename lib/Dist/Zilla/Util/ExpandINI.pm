@@ -10,6 +10,7 @@ our $VERSION = '0.002001';
 
 # AUTHORITY
 
+use Carp qw( croak );
 use Moo 1.000008 qw( has );
 use Scalar::Util qw( blessed );
 use Dist::Zilla::Util::BundleInfo 1.001000;
@@ -55,6 +56,18 @@ has 'include_does' => (
 has 'exclude_does' => (
   is      => 'ro',
   default => sub { [] },
+);
+
+my $valid_comment_types = {
+  'all'        => 1,
+  'none'       => 1,
+  'authordeps' => 1,
+};
+
+has 'comments' => (
+  is  => 'rw',
+  isa => sub { croak 'comments accepts all, none or authordeps' unless exists $valid_comment_types->{ $_[0] } },
+  default => sub { return 'all' },
 );
 
 sub _load_file {
@@ -191,6 +204,8 @@ sub _expand {
   while (@in) {
     my $tip = shift @in;
 
+    $tip->{comment_lines} = $self->_clean_comment_lines( $tip->{comment_lines} );
+
     if ( $tip->{name} and '_' eq $tip->{name} ) {
       push @out, $tip;
       next;
@@ -221,6 +236,12 @@ sub _expand {
   return;
 }
 
+sub _clean_comment_lines {
+  my ( $self, $lines ) = @_;
+  return $lines if q[all] eq $self->comments;
+  return [ grep { /\A\s*authordep\s+/msx } @{$lines} ] if q[authordeps] eq $self->comments;
+  return [];
+}
 1;
 
 =head1 SYNOPSIS
@@ -280,6 +301,17 @@ If this C<ArrayRef> is empty, I<no> C<Plugin>s will be I<excluded>
 This is the default behavior.
 
   ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
+
+=attr C<comments>
+
+This attribute controls how comments are handled.
+
+=for :list
+* C<all> - All comments are copied ( B<Default> )
+* C<authordeps> - Only comments that look like C<Dist::Zilla> C<AuthorDeps> are copied.
+* C<none> - No comments are copied.
+
+( C<API> Since C<0.003000> )
 
 =head1 COMMENT PRESERVATION
 
