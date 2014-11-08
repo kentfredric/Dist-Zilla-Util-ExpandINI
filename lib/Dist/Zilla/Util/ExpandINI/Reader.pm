@@ -30,12 +30,12 @@ sub new {
 }
 
 sub can_ignore {
-  my ( $self, $line, $handle ) = @_;
-  if ( $line =~ /\A\s*;(.*$)/ ) {
+  my ( $self, $line, ) = @_;
+  if ( $line =~ /\A\s*;(.*$)/msx ) {
     push @{ $self->{current_section}->{comment_lines} },"$1";
     return 1;
   }
-  return $line =~ /\A\s*$/ ? 1 : 0;
+  return $line =~ /\A\s*$/msx ? 1 : 0;
 }
 
 sub change_section {

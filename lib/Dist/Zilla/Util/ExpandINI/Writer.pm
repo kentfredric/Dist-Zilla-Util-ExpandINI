@@ -51,7 +51,7 @@ sub preprocess_input {
     if ( $ini_record->{name} and $ini_record->{package} ne $ini_record->{name} ) {
       $kn .= q[ / ] . $ini_record->{name};
     }
-    push @out, $kn,  $ini_record;
+    push @out, $kn, $ini_record;
     next;
   }
   return \@out;
@@ -74,7 +74,7 @@ sub validate_input {
     Carp::croak "illegal section name '$name'"
       if not $self->is_valid_section_name($name);
 
-    my @props_copy = @{$record->{lines}};
+    my @props_copy = @{ $record->{lines} };
 
     while (@props_copy) {
       my ( $property, $value ) = splice @props_copy, 0, 2;
@@ -91,10 +91,10 @@ sub validate_input {
 }
 
 sub stringify_section_data {
-  my ( $self, $record ) = @_;
+  my ( $self, $ini_record ) = @_;
   my $output = '';
-  $output .= ';' . $_ . qq[\n] for @{ $record->{comment_lines} };
-  $output .= $self->SUPER::stringify_section_data( $record->{lines} );
+  $output .= ';' . $_ . qq[\n] for @{ $ini_record->{comment_lines} };
+  $output .= $self->SUPER::stringify_section_data( $ini_record->{lines} );
   return $output;
 }
 1;
