@@ -210,7 +210,7 @@ sub _expand {
       next unless $self->_include_module( $plugin->module );
       my $rec = { package => $plugin->short_module };
       $rec->{name}  = $plugin->name;
-      $rec->{lines} = [ $plugin->payload_list ],
+      $rec->{lines} = [ $plugin->payload_list ];
       push @out, $rec;
     }
     # Inject any comments from under a bundle
