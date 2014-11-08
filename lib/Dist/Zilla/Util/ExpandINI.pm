@@ -351,7 +351,7 @@ This attribute controls how comments are handled.
 
 =item *
 
-C<all> - All comments are copied ( B<Default>
+C<all> - All comments are copied ( B<Default> )
 
 =item *
 
