@@ -24,8 +24,7 @@ sub new {
   };
 
   bless $self => $class;
-  $self->{current_section} = { name => $self->starting_section, lines => [] };
-  $self->{pending_comments} = [];
+  $self->{current_section} = { name => $self->starting_section, lines => [], comment_lines => [] };
 
   return $self;
 }
@@ -33,7 +32,7 @@ sub new {
 sub can_ignore {
   my ( $self, $line, $handle ) = @_;
   if ( $line =~ /\A\s*;(.*$)/ ) {
-    push @{ $self->{pending_comments} }, "$1";
+    push @{ $self->{current_section}->{comment_lines} },"$1";
     return 1;
   }
   return $line =~ /\A\s*$/ ? 1 : 0;
@@ -60,11 +59,6 @@ sub change_section {
 
   push @{ $self->{data} }, $self->{current_section};
 
-  if ( @{ $self->{pending_comments} } ) {
-    push @{ $self->{data} }, { type => 'comment', content => [ @{ $self->{pending_comments} } ] };
-    $self->{pending_comments} = [];
-  }
-
   if ( exists $self->{sections}->{$name} ) {
     Carp::croak qq{Duplicate section $name ( $package )};
   }
@@ -73,17 +67,13 @@ sub change_section {
     name    => $name,
     package => $package,
     lines   => [],
+    comment_lines => [],
   };
   return;
 }
 
 sub set_value {
   my ( $self, $name, $value ) = @_;
-
-  if ( @{ $self->{pending_comments} } ) {
-    push @{ $self->{data} }, { type => 'comment', content => [ @{ $self->{pending_comments} } ] };
-    $self->{pending_comments} = [];
-  }
 
   push @{ $self->{current_section}->{lines} }, $name, $value;
   return;

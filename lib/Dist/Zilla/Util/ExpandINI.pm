@@ -192,11 +192,6 @@ sub _expand {
   while (@in) {
     my $tip = shift @in;
 
-    if ( exists $tip->{type} and 'comment' eq $tip->{type} ) {
-      push @out, $tip;
-      next;
-    }
-
     if ( $tip->{name} and '_' eq $tip->{name} ) {
       push @out, $tip;
       next;
@@ -215,9 +210,12 @@ sub _expand {
       next unless $self->_include_module( $plugin->module );
       my $rec = { package => $plugin->short_module };
       $rec->{name}  = $plugin->name;
-      $rec->{lines} = [ $plugin->payload_list ];
+      $rec->{lines} = [ $plugin->payload_list ],
       push @out, $rec;
     }
+    # Inject any comments from under a bundle 
+    $out[-1]->{comment_lines} = $tip->{comment_lines};
+
   }
   $self->_data( \@out );
   return;
