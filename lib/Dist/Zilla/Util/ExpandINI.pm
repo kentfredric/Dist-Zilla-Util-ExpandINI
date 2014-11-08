@@ -347,9 +347,21 @@ This is the default behavior.
 
 This attribute controls how comments are handled.
 
-=for :list * C<all> - All comments are copied ( B<Default>
-* C<authordeps> - Only comments that look like C<Dist::Zilla> C<AuthorDeps> are copied.
-* C<none> - No comments are copied.
+=over 4
+
+=item *
+
+C<all> - All comments are copied ( B<Default>
+
+=item *
+
+C<authordeps> - Only comments that look like C<Dist::Zilla> C<AuthorDeps> are copied.
+
+=item *
+
+C<none> - No comments are copied.
+
+=back
 
 =head1 COMMENT PRESERVATION
 

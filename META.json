@@ -561,6 +561,11 @@
                         "class" : "Pod::Weaver::Section::Legal",
                         "name" : "Legal",
                         "version" : "4.007"
+                     },
+                     {
+                        "class" : "Pod::Weaver::Plugin::Transformer",
+                        "name" : "-Transformer",
+                        "version" : "4.007"
                      }
                   ]
                }

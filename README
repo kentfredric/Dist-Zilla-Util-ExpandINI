@@ -88,6 +88,13 @@ ATTRIBUTES
   "comments"
     This attribute controls how comments are handled.
 
+    *   "all" - All comments are copied ( Default
+
+    *   "authordeps" - Only comments that look like "Dist::Zilla"
+        "AuthorDeps" are copied.
+
+    *   "none" - No comments are copied.
+
 COMMENT PRESERVATION
     Comments are ( since "v0.002000" ) arbitrarily supported in a very basic
     way. But the behavior may be surprising.
