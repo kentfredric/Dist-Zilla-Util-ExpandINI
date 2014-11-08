@@ -22,5 +22,5 @@ srcreadme         = mkdn
 
 
 [Prereqs]
-; authordep Pod::Weaver::Transformer::List
+; authordep Pod::Elemental::Transformer::List
 

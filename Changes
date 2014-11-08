@@ -9,6 +9,10 @@ Release history for Dist-Zilla-Util-ExpandINI
  - Default is `all`.
  - Thanks to Alan Young ( AYOUNG ) for the contributions ( Github #1 ).
 
+ [Dependencies::Stats]
+ - Dependencies changed since 0.002000, see misc/*.deps* for details
+ - develop: +1
+
 0.002000 2014-11-08T01:53:39Z da7e0e7
  [API]
  - Now properly instantiable with ->new()

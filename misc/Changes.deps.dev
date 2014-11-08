@@ -1,6 +1,8 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
 0.002001
+ [Added / develop requires]
+ - Pod::Weaver::Transformer::List
 
 0.002000 2014-11-08T01:53:39Z
  [Added / develop recommends]

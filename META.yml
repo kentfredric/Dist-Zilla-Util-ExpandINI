@@ -47,8 +47,6 @@ resources:
   repository: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI.git
 version: '0.002001'
 x_BuiltWith:
-  failures:
-    Pod::Weaver::Transformer::List: 'module was not found in INC'
   modules:
     CPAN::Meta: '2.142690'
     Carp: '1.34'
@@ -110,6 +108,7 @@ x_BuiltWith:
     Module::Runtime: '0.014'
     Moo: '1.006001'
     Pod::Coverage::TrustPod: '0.100003'
+    Pod::Elemental::Transformer::List: '0.102000'
     Scalar::Util: '1.41'
     Test::CPAN::Changes: '0.30'
     Test::CPAN::Meta: '0.23'
