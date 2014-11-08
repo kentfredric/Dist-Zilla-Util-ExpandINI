@@ -76,6 +76,7 @@
             "Dist::Zilla::Plugin::Twitter" : "0",
             "Dist::Zilla::Plugin::UploadToCPAN" : "0",
             "Pod::Coverage::TrustPod" : "0",
+            "Pod::Weaver::Transformer::List" : "0",
             "Test::CPAN::Changes" : "0.19",
             "Test::CPAN::Meta" : "0",
             "Test::EOL" : "0",
@@ -148,6 +149,9 @@
    },
    "version" : "0.002001",
    "x_BuiltWith" : {
+      "failures" : {
+         "Pod::Weaver::Transformer::List" : "module was not found in INC"
+      },
       "modules" : {
          "CPAN::Meta" : "2.142690",
          "Carp" : "1.34",

@@ -20,4 +20,7 @@ copyfiles         = LICENSE
 srcreadme         = mkdn
 ; auto_prereqs_skip = File::Find
 
+
 [Prereqs]
+; authordep Pod::Weaver::Transformer::List
+
