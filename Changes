@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
 {{$NEXT}}
+
+0.003000 2014-11-08T12:17:58Z 6a88090
  [API]
  - Can now pass `comments => ` with any of the following values to control comment handling.
  - `all`, all comments are copied.

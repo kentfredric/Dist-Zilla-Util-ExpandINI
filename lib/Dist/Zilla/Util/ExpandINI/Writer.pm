@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Util::ExpandINI::Writer;
 
-our $VERSION = '0.002001';
+our $VERSION = '0.003001';
 
 # ABSTRACT: An order-preserving INI Writer
 
