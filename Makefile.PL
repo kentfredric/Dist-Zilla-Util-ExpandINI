@@ -63,20 +63,20 @@ my %FallbackPrereqs = (
   "warnings" => 0
 );
 
-# inserted by Dist::Zilla::Plugin::DynamicPrereqs 0.009
+# inserted by Dist::Zilla::Plugin::DynamicPrereqs 0.010
 unless ( eval { ExtUtils::MakeMaker->VERSION(7.05_01) } ) {
+  my $um = "ExtUtils::MakeMaker";
   my $module = "Mixin::Linewise";
   my ($good,$bad) = (0.108, 0.107 );
-  delete $WriteMakefileArgs{PREREQ_PM}->{$module};
-  delete $FallbackPrereqs{$module};
+  $WriteMakefileArgs{PREREQ_PM}->{$module} = $FallbackPrereqs{$module} = 0;
   # not present = 0, present > 0.108 = 0, present !> 0.107 = 0
   # else = 0.108
-  if ( not eval "require $module; 1"
-        or eval "$module->VERSION($good);1"
-        or not eval "$module->VERSION($bad); 1" ) {
-    $FallbackPrereqs{$module} = $WriteMakefileArgs{PREREQ_PM}->{$module} = 0;
-  } else {
-    $FallbackPrereqs{$module} = $WriteMakefileArgs{PREREQ_PM}->{$module} = $good;
+  my $path = $um->_installed_file_for_module( $module );
+  if ( $path ) {
+    my $version = $um->parse_version( $path );
+    if ( $version eq '0.107' ) {
+      $FallbackPrereqs{$module} = $WriteMakefileArgs{PREREQ_PM}->{$module} = $good;
+    }
   }
 }
 

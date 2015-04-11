@@ -784,7 +784,7 @@
          {
             "class" : "Dist::Zilla::Plugin::DynamicPrereqs",
             "name" : "DynamicPrereqs",
-            "version" : "0.009"
+            "version" : "0.010"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
