@@ -58,7 +58,7 @@
       "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.024001",
       "Dist::Zilla::PluginBundle::Classic" : "5.034",
       "Dist::Zilla::Util::BundleInfo" : "1.001003",
-      "ExtUtils::MakeMaker" : "7.05_20",
+      "ExtUtils::MakeMaker" : "7.04",
       "File::Spec" : "3.53",
       "Mixin::Linewise" : "0.108",
       "Module::Runtime" : "0.014",
