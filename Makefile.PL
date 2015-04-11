@@ -68,7 +68,7 @@ unless ( eval { ExtUtils::MakeMaker->VERSION(7.05_01) } ) {
   my $module = "Mixin::Linewise";
   my $want    = "0";
   my $path    = MM->_installed_file_for_module( $module );
-  if ( $path and MM->parse_version( $path ) || q[]  eq q[0.107] ) {
+  if ( $path and ( MM->parse_version( $path ) || q[] ) eq q[0.107] ) {
     warn "Bad Mixin::Linewise 0.107 found";
     $want = "0.108";
   };
