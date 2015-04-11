@@ -1,182 +1,49 @@
-NAME
-    Dist::Zilla::Util::ExpandINI - Read an INI file and expand bundles as
-    you go.
+Dist::Zilla::Util::ExpandINI
 
-VERSION
-    version 0.003000
+This module builds upon the previous work ":Util::BundleInfo" ( Which
+can extract configuration from a bundle in a manner similar to how
+"dzil" does it ) and integrates it with some *very* minimal "INI"
+handling to provide a tool capable of generating bundle-free "dist.ini"
+files from bundle-using "dist.ini" files!
 
-SYNOPSIS
-      # Write a dist.ini with a bundle anywhere you like
-      my $string = <<"EOF";
-      name = Foo
-      version = 1.000
+At present its very naïve and only keeps semantic ordering, and I've
+probably gotten something wrong due to cutting the complexity of
+Config::MVP out of the loop.
 
-      [@Some::Author]
-      EOF
+But at this stage, bundles are the *only* thing modified in transit.
 
-      path('dist.ini.meta')->spew($string);
+Every thing else is practically a token-level copy-paste.
 
-      # Generate a copy with bundles inlined.
-      use Dist::Zilla::Util::ExpandINI;
-      Dist::Zilla::Util::ExpandINI->filter_file( 'dist.ini.meta' => 'dist.ini' );
+POD ERRORS
 
-      # Hurrah, dist.ini has all the things!
+Hey! The above document had some coding errors, which are explained
+below:
 
-      # Advanced Usage:
-      my $filter = Dist::Zilla::Util::ExpandINI->new(
-        include_does => [ 'Dist::Zilla::Role::FileGatherer', ],
-        exclude_does => [ 'Dist::Zilla::Role::Releaser', ],
-      );
-      $filter->filter_file( 'dist.ini.meta' => 'dist.ini' );
+Around line 8:
+    Non-ASCII character seen before =encoding in 'naïve'. Assuming
+    CP1252
 
-DESCRIPTION
-    This module builds upon the previous work ":Util::BundleInfo" ( Which
-    can extract configuration from a bundle in a manner similar to how
-    "dzil" does it ) and integrates it with some *very* minimal "INI"
-    handling to provide a tool capable of generating bundle-free "dist.ini"
-    files from bundle-using "dist.ini" files!
+INSTALLATION
 
-    At present its very naïve and only keeps semantic ordering, and I've
-    probably gotten something wrong due to cutting the complexity of
-    Config::MVP out of the loop.
+This is a Perl module distribution. It should be installed with whichever
+tool you use to manage your installation of Perl, e.g. any of
 
-    But at this stage, bundles are the *only* thing modified in transit.
+  cpanm .
+  cpan  .
+  cpanp -i .
 
-    Every thing else is practically a token-level copy-paste.
+Consult http://www.cpan.org/modules/INSTALL.html for further instruction.
+Should you wish to install this module manually, the procedure is
 
-METHODS
-  "filter_file"
-                                               #  $source   , $dest
-      Dist::Zilla::Util::ExpandINI->filter_file('source.ini','target.ini');
-
-    Reads $source, performs expansions, and emits $dest
-
-  "filter_handle"
-      Dist::Zilla::Util::ExpandINI->filter_handle($reader,$writer);
-
-    Reads $reader, performs expansions, and emits to $writer
-
-  "filter_string"
-      my $return = Dist::Zilla::Util::ExpandINI->filter_string($source);
-
-    Decodes $source, performs expansions, and returns expanded source.
-
-ATTRIBUTES
-  "include_does"
-    An "ArrayRef" of "Role"s to include in the emitted "INI" from the source
-    "INI".
-
-    If this "ArrayRef" is empty, all "Plugin"s will be included.
-
-    This is the default behavior.
-
-      ->new( include_does => [ 'Dist::Zilla::Role::VersionProvider', ] );
-
-    ( "API" Since 0.002000 )
-
-  "exclude_does"
-    An "ArrayRef" of "Role"s to *exclude* from the emitted "INI".
-
-    If this "ArrayRef" is empty, *no* "Plugin"s will be *excluded*
-
-    This is the default behavior.
-
-      ->new( exclude_does => [ 'Dist::Zilla::Role::Releaser', ] );
-
-    ( "API" Since 0.002000 )
-
-  "comments"
-    This attribute controls how comments are handled.
-
-    *   "all" - All comments are copied ( Default )
-
-    *   "authordeps" - Only comments that look like "Dist::Zilla"
-        "AuthorDeps" are copied.
-
-    *   "none" - No comments are copied.
-
-    ( "API" Since 0.003000 )
-
-COMMENT PRESERVATION
-    Comments are ( since "v0.002000" ) arbitrarily supported in a very basic
-    way. But the behavior may be surprising.
-
-      [SectionHeader]
-      BODY
-      [SectionHeader]
-      BODY
-
-    Is how "Config::INI" understands its content. So comment parsing is
-    implemented as
-
-      BODY:
-        comments: [ "A", "B", "C" ],
-        params:   [ "x=y","foo=bar" ]
-
-    So:
-
-      [Header]
-      ;A
-      x = y ; Trailing Note
-      ;B
-      foo = bar ; Trailing Note
-
-      ;Remark About Header2
-      [Header2]
-
-    Is re-serialized as:
-
-      [Header]
-      ;A
-      ;B
-      ;Remark About Header2
-      x = y
-      foo = bar
-
-      [Header2]
-
-    This behavior may seem surprising, but its surprising only if you have
-    assumptions about how "INI" parsing works.
-
-    This also applies and has strange effects with bundles:
-
-      [Header]
-      x = y
-
-      ; CommentAboutBundle
-      [@Bundle]
-      ; More Comments About Bundle
-
-      [Header2]
-
-    This expands as:
-
-      [Header]
-      ; CommentAboutBundle
-      x = y
-
-      [BundleHeader1]
-      arg = value
-
-      [BundleHeader2]
-      arg = value
-
-      [BundleHeader3]
-      ; More Comments About Bundle
-      arg = value
-
-      [Header2]
-
-    And also note, at this time, only whole-line comments are preserved.
-    Suffix comments are stripped.
-
-AUTHOR
-    Kent Fredric <kentnl@cpan.org>
+  perl Makefile.PL
+  make
+  make test
+  make install
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2014 by Kent Fredric
-    <kentfredric@gmail.com>.
 
-    This is free software; you can redistribute it and/or modify it under
-    the same terms as the Perl 5 programming language system itself.
+This software is copyright (c) 2015 by Kent Fredric
+<kentfredric@gmail.com>.
 
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
