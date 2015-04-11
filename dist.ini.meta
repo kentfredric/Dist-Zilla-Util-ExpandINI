@@ -32,7 +32,8 @@ Mixin::Linewise = != 0.107
 -raw = |  my $want    = "0";
 -raw = |  my $path    = MM->_installed_file_for_module( $module );
 -raw = |  if ( $path and MM->parse_version( $path ) || q[]  eq q[0.107] ) {
+-raw = |    warn "Bad Mixin::Linewise 0.107 found";
 -raw = |    $want = "0.108";
--raw = |  };   
+-raw = |  };
 -raw = |  $FallbackPrereqs{$module} = $WriteMakefileArgs{PREREQ_PM}->{$module} = $want;
 -raw = |}
