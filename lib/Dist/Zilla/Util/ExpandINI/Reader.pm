@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Util::ExpandINI::Reader;
 
-our $VERSION = '0.003001';
+our $VERSION = '0.003002';
 
 # ABSTRACT: An order-preserving INI reader
 
