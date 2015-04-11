@@ -6,6 +6,9 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Dist::Zilla::Plugin::Prereqs::Upgrade
  - Dist::Zilla::Plugin::Readme::Brief
 
+ [Added / runtime requires]
+ - Mixin::Linewise != 0.107
+
  [Changed / develop recommends]
  - Test::More 1.001009 → 0.99
 
