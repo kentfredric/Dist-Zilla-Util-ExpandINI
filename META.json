@@ -3,7 +3,7 @@
    "author" : [
       "Kent Fredric <kentnl@cpan.org>"
    ],
-   "dynamic_config" : 0,
+   "dynamic_config" : 1,
    "generated_by" : "Dist::Zilla version 5.034, CPAN::Meta::Converter version 2.150001",
    "license" : [
       "perl_5"
@@ -37,6 +37,7 @@
             "Dist::Zilla::Plugin::BumpVersionAfterRelease" : "0",
             "Dist::Zilla::Plugin::ConfirmRelease" : "0",
             "Dist::Zilla::Plugin::CopyFilesFromBuild" : "0",
+            "Dist::Zilla::Plugin::DynamicPrereqs" : "0",
             "Dist::Zilla::Plugin::Git::Check" : "0",
             "Dist::Zilla::Plugin::Git::Commit" : "0",
             "Dist::Zilla::Plugin::Git::CommitBuild" : "0",
@@ -779,6 +780,11 @@
             },
             "name" : "Prereqs",
             "version" : "5.034"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::DynamicPrereqs",
+            "name" : "DynamicPrereqs",
+            "version" : "0.009"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
