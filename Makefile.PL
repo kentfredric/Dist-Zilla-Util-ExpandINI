@@ -64,6 +64,24 @@ my %FallbackPrereqs = (
 );
 
 # inserted by Dist::Zilla::Plugin::DynamicPrereqs 0.010
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.53_03) } ) {
+  *MM::_installed_file_for_module = sub {
+    my $class  = shift;
+    my $prereq = shift;
+    my $file = "$prereq.pm";
+    $file =~ s{::}{/}g;
+    my $path;
+    for my $dir (@INC) {
+      my $tmp = File::Spec->catfile($dir, $file);
+      if ( -r $tmp ) {
+        $path = $tmp;
+        last;
+      }
+    }
+    return $path;
+  }
+}
+
 unless ( eval { ExtUtils::MakeMaker->VERSION(7.05_01) } ) {
   my $module = "Mixin::Linewise";
   my $want    = "0";
