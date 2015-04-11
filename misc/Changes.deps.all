@@ -3,6 +3,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
 0.003001
  [Added / develop requires]
  - Dist::Zilla::Plugin::Author::KENTNL::TravisCI 0.001002
+ - Dist::Zilla::Plugin::DynamicPrereqs
  - Dist::Zilla::Plugin::Prereqs::Upgrade
  - Dist::Zilla::Plugin::Readme::Brief
 
