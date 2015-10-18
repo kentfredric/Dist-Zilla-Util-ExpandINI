@@ -1,6 +1,10 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
 0.003002
+ [Added / configure requires]
+ - CPAN::Meta::Requirements 2.120620
+ - Module::Metadata
+
  [Added / develop requires]
  - Dist::Zilla::Plugin::Author::KENTNL::CONTRIBUTING 0.001003
  - Dist::Zilla::Plugin::MetaYAML::Minimal
@@ -9,6 +13,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  - Software::License::Perl_5
 
  [Changed / develop requires]
+ - Dist::Zilla::Plugin::DynamicPrereqs 0 → 0.016
  - Test::More 0.88 → 0.96
 
  [Changed / develop suggests]

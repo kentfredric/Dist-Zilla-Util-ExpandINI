@@ -22,34 +22,8 @@ srcreadme         = mkdn
 
 [Prereqs]
 ; authordep Pod::Elemental::Transformer::List
-Mixin::Linewise = != 0.107
+Mixin::Linewise = != 0.107  ; not understood except on very new EUMM
 
 [DynamicPrereqs]
--delimiter = |
--raw = |unless ( eval { ExtUtils::MakeMaker->VERSION(6.53_03) } ) {
--raw = |  *MM::_installed_file_for_module = sub {
--raw = |    my $class  = shift;
--raw = |    my $prereq = shift;
--raw = |    my $file = "$prereq.pm";
--raw = |    $file =~ s{::}{/}g;
--raw = |    my $path;
--raw = |    for my $dir (@INC) {
--raw = |      my $tmp = File::Spec->catfile($dir, $file);
--raw = |      if ( -r $tmp ) {
--raw = |        $path = $tmp;
--raw = |        last;
--raw = |      }
--raw = |    }
--raw = |    return $path;
--raw = |  }
--raw = |}
--raw = |
--raw = |unless ( eval { ExtUtils::MakeMaker->VERSION(7.05_01) } ) {
--raw = |  my $module = "Mixin::Linewise";
--raw = |  my $want    = "0";
--raw = |  my $path    = MM->_installed_file_for_module( $module );
--raw = |  if ( $path and ( MM->parse_version( $path ) || q[] ) eq q[0.107] ) {
--raw = |    $want = "0.108";
--raw = |  };
--raw = |  $FallbackPrereqs{$module} = $WriteMakefileArgs{PREREQ_PM}->{$module} = $want;
--raw = |}
+:version = 0.016
+-raw = requires('Mixin::Linewise', '0.108') if has_module('Mixin::Linewise', '0.107');

@@ -3,7 +3,12 @@ Release history for Dist-Zilla-Util-ExpandINI
 {{$NEXT}}
  [Dependencies::Stats]
  - Dependencies changed since 0.003001, see misc/*.deps* for details
- - develop: +5 ↑1 -1 (suggests: ↑2)
+ - configure: +2
+ - develop: +5 ↑2 -1 (suggests: ↑2)
+
+ [Packaging]
+ - Use a simpler DynamicPrereqs invocation, thanks @ether
+ - closes #2
 
 0.003001 2015-04-11T05:39:59Z 818763d
  [Dependencies::Stats]

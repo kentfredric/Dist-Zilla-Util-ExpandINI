@@ -10,7 +10,9 @@ my %WriteMakefileArgs = (
   "ABSTRACT" => "Read an INI file and expand bundles as you go.",
   "AUTHOR" => "Kent Fredric <kentnl\@cpan.org>",
   "CONFIGURE_REQUIRES" => {
-    "ExtUtils::MakeMaker" => 0
+    "CPAN::Meta::Requirements" => "2.120620",
+    "ExtUtils::MakeMaker" => 0,
+    "Module::Metadata" => 0
   },
   "DISTNAME" => "Dist-Zilla-Util-ExpandINI",
   "LICENSE" => "perl",
@@ -63,33 +65,7 @@ my %FallbackPrereqs = (
 );
 
 # inserted by Dist::Zilla::Plugin::DynamicPrereqs 0.016
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.53_03) } ) {
-  *MM::_installed_file_for_module = sub {
-    my $class  = shift;
-    my $prereq = shift;
-    my $file = "$prereq.pm";
-    $file =~ s{::}{/}g;
-    my $path;
-    for my $dir (@INC) {
-      my $tmp = File::Spec->catfile($dir, $file);
-      if ( -r $tmp ) {
-        $path = $tmp;
-        last;
-      }
-    }
-    return $path;
-  }
-}
-
-unless ( eval { ExtUtils::MakeMaker->VERSION(7.05_01) } ) {
-  my $module = "Mixin::Linewise";
-  my $want    = "0";
-  my $path    = MM->_installed_file_for_module( $module );
-  if ( $path and ( MM->parse_version( $path ) || q[] ) eq q[0.107] ) {
-    $want = "0.108";
-  };
-  $FallbackPrereqs{$module} = $WriteMakefileArgs{PREREQ_PM}->{$module} = $want;
-}
+requires('Mixin::Linewise', '0.108') if has_module('Mixin::Linewise', '0.107');
 
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
@@ -102,3 +78,29 @@ delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
   unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
 
 WriteMakefile(%WriteMakefileArgs);
+
+# inserted by Dist::Zilla::Plugin::DynamicPrereqs 0.016
+sub has_module {
+  my ($module, $version_or_range) = @_;
+  require Module::Metadata;
+  my $mmd = Module::Metadata->new_from_module($module);
+  return undef if not $mmd;
+  return $mmd->version($module) if not defined $version_or_range;
+
+  require CPAN::Meta::Requirements;
+  my $req = CPAN::Meta::Requirements->new;
+  $req->add_string_requirement($module => $version_or_range);
+  return 1 if $req->accepts_module($module => $mmd->version($module));
+  return 0;
+}
+
+sub requires {
+  goto &runtime_requires;
+}
+
+sub runtime_requires {
+  my ($module, $version_or_range) = @_;
+  $version_or_range = '0' if not $version_or_range;
+  $WriteMakefileArgs{PREREQ_PM}{$module} = $FallbackPrereqs{$module} = $version_or_range;
+  return;
+}
