@@ -9,6 +9,7 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
  - Software::License::Perl_5
 
  [Changed / develop requires]
+ - Dist::Zilla::Plugin::DynamicPrereqs 0 → 0.016
  - Test::More 0.88 → 0.96
 
  [Changed / develop suggests]
