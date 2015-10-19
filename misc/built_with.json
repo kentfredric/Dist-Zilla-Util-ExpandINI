@@ -1,6 +1,7 @@
 {
    "modules" : {
       "CPAN::Meta" : "2.150005",
+      "CPAN::Meta::Requirements" : "2.138",
       "Carp" : "1.36",
       "Config::INI::Reader" : "0.025",
       "Config::INI::Writer" : "0.025",
@@ -64,6 +65,7 @@
       "ExtUtils::MakeMaker" : "7.10",
       "File::Spec" : "3.56_02",
       "Mixin::Linewise" : "0.108",
+      "Module::Metadata" : "1.000027",
       "Module::Runtime" : "0.014",
       "Moo" : "2.000002",
       "Pod::Coverage::TrustPod" : "0.100003",
