@@ -65,7 +65,7 @@ my %FallbackPrereqs = (
 );
 
 # inserted by Dist::Zilla::Plugin::DynamicPrereqs 0.016
-require('Mixin::Linewise', '0.108') if has_module('Mixin::Linewise', '0.107');
+requires('Mixin::Linewise', '0.108') if has_module('Mixin::Linewise', '0.107');
 
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
@@ -92,4 +92,15 @@ sub has_module {
   $req->add_string_requirement($module => $version_or_range);
   return 1 if $req->accepts_module($module => $mmd->version($module));
   return 0;
+}
+
+sub requires {
+  goto &runtime_requires;
+}
+
+sub runtime_requires {
+  my ($module, $version_or_range) = @_;
+  $version_or_range = '0' if not $version_or_range;
+  $WriteMakefileArgs{PREREQ_PM}{$module} = $FallbackPrereqs{$module} = $version_or_range;
+  return;
 }

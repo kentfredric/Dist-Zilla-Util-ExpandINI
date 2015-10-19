@@ -26,4 +26,4 @@ Mixin::Linewise = != 0.107  ; not understood except on very new EUMM
 
 [DynamicPrereqs]
 :version = 0.016
--raw = require('Mixin::Linewise', '0.108') if has_module('Mixin::Linewise', '0.107');
+-raw = requires('Mixin::Linewise', '0.108') if has_module('Mixin::Linewise', '0.107');
