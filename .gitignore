@@ -1,2 +1,4 @@
-.build
-Dist-Zilla-Util-ExpandINI-*
+/.build
+/Dist-Zilla-Util-ExpandINI-*
+/tmp/
+
