@@ -7,15 +7,13 @@ build_requires:
   ExtUtils::MakeMaker: '0'
   File::Spec: '0'
   Test::Differences: '0'
-  Test::More: '0.89'
+  Test::More: '0'
   perl: '5.006'
 configure_requires:
-  CPAN::Meta::Requirements: '2.120620'
-  ExtUtils::MakeMaker: '0'
-  Module::Metadata: '0'
+  ExtUtils::MakeMaker: '7.1101'
   perl: '5.006'
-dynamic_config: 1
-generated_by: 'Dist::Zilla version 5.039, CPAN::Meta::Converter version 2.150005'
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 6.008, CPAN::Meta::Converter version 2.150010'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -24,13 +22,13 @@ name: Dist-Zilla-Util-ExpandINI
 provides:
   Dist::Zilla::Util::ExpandINI:
     file: lib/Dist/Zilla/Util/ExpandINI.pm
-    version: '0.003002'
+    version: '0.003003'
   Dist::Zilla::Util::ExpandINI::Reader:
     file: lib/Dist/Zilla/Util/ExpandINI/Reader.pm
-    version: '0.003002'
+    version: '0.003003'
   Dist::Zilla::Util::ExpandINI::Writer:
     file: lib/Dist/Zilla/Util/ExpandINI/Writer.pm
-    version: '0.003002'
+    version: '0.003003'
 requires:
   Carp: '0'
   Config::INI::Reader: '0'
@@ -48,4 +46,4 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI
   repository: https://github.com/kentnl/Dist-Zilla-Util-ExpandINI.git
-version: '0.003002'
+version: '0.003003'
