@@ -1,6 +1,18 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
-0.003003 2015-10-19T10:46:21Z 1547e72
+0.003003 2017-03-04T05:26:19Z d66d358
+ [Bugfix]
+ - Avoid test failures on 5.26 w/ -Ddefault_inc_excludes_dot
+ - Closes https://github.com/kentnl/Dist-Zilla-Util-ExpandINI/issues/3
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.003002, see misc/*.deps* for details
+ - configure: ↑1 -2 (recommends: -1)
+ - develop: +1 ↑1 -1 (suggests: ↑1)
+ - test: ↓1
+
+ [Misc]
+ - Use newer EUMM w/ ranged versions instead of DynamicPrereqs magic
 
 0.003002 2015-10-19T10:20:25Z 5d62f99
  [Dependencies::Stats]
