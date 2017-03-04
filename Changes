@@ -1,5 +1,7 @@
 Release history for Dist-Zilla-Util-ExpandINI
 
+0.003004 2017-03-04T05:52:50Z e015063
+
 0.003003 2017-03-04T05:26:19Z d66d358
  [Bugfix]
  - Avoid test failures on 5.26 w/ -Ddefault_inc_excludes_dot
